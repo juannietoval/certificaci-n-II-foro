@@ -256,18 +256,17 @@
       font-weight: 700;
     }
 
-    .schedule-text {
-      font-size: 10pt;
-      font-weight: 600;
-      color: #0b223d;
-      letter-spacing: 0.8px;
-    }
-
     .affiliation {
       font-size: 9.8pt;
       font-weight: 500;
       color: #64748b;
       letter-spacing: 0.4px;
+    }
+
+    .location-date {
+      font-size: 10pt;
+      color: #64748b;
+      letter-spacing: 0.6px;
     }
 
     /* SIGNATURES SECTION */
@@ -415,15 +414,13 @@
       <div class="intensity-box">
         <span>Intensidad: <strong>{{INTENSIDAD}}</strong></span>
         &bull;
-        <span>Modalidad: <strong>{{MODALIDAD}}</strong></span>
+        <span>Horario: <strong>{{HORARIO}}</strong></span>
       </div>
 
-      <div class="schedule-text">
-        {{FECHA_COMPLETA}}
-      </div>
+      {{AFFILIATION_BLOCK}}
 
-      <div class="affiliation">
-        {{AFFILIATION_LINE}}
+      <div class="location-date">
+        {{LOCATION_DATE}}
       </div>
     </div>
 

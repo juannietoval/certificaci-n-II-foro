@@ -66,20 +66,22 @@ def generate_all():
             cert_html = template_asistente
             doc_line = format_doc(p.get("cedula", ""))
             intensidad = p.get("intensidad", DEFAULT_INTENSIDAD)
-            fecha_completa = f"{clean_val(fecha)} &bull; {clean_val(horario)}"
+            horario = p.get("horario", DEFAULT_HORARIO)
+            ciudad_disp = f"{ciudad} (Modalidad {modalidad})" if modalidad else ciudad
+            location_date = f"{ciudad_disp} &mdash; {clean_val(fecha)}"
 
             cert_html = cert_html.replace("{{ID}}", cert_id)
             cert_html = cert_html.replace("{{NOMBRE}}", clean_val(nombre))
             cert_html = cert_html.replace("{{DOCUMENTO_LINE}}", clean_val(doc_line))
             cert_html = cert_html.replace("{{ROL}}", "ASISTENTE")
             cert_html = cert_html.replace("{{INTENSIDAD}}", clean_val(intensidad))
-            cert_html = cert_html.replace("{{MODALIDAD}}", clean_val(modalidad))
-            cert_html = cert_html.replace("{{FECHA_COMPLETA}}", fecha_completa)
+            cert_html = cert_html.replace("{{HORARIO}}", clean_val(horario))
             if institucion:
-                affiliation_line = f"{clean_val(institucion)} &bull; {clean_val(ciudad)}"
+                aff_block = f'<div class="affiliation">{clean_val(institucion)}</div>'
             else:
-                affiliation_line = clean_val(ciudad)
-            cert_html = cert_html.replace("{{AFFILIATION_LINE}}", affiliation_line)
+                aff_block = ''
+            cert_html = cert_html.replace("{{AFFILIATION_BLOCK}}", aff_block)
+            cert_html = cert_html.replace("{{LOCATION_DATE}}", location_date)
             cert_html = cert_html.replace("{{COORDINACION}}", clean_val(p.get("coordinacion", "Comité Organizador")))
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
         else:

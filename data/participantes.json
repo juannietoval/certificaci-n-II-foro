@@ -1,0 +1,28 @@
+[
+  {
+    "id": "FORO26-PON-001",
+    "nombre": "Nohelia Alfonzo",
+    "rol": "PONENTE",
+    "titulo": "CIENCIA ABIERTA EN CONTEXTO DE CRISIS: VISIBILIDAD DIGITAL Y CIRCULACIÓN DEL CONOCIMIENTO DESDE REVISTAS UNIVERSITARIAS VENEZOLANAS",
+    "eje": "Visibilidad científica y mundo digital",
+    "institucion": "Universidad Bicentenaria de Aragua / Universidad de las Ciencias de la Salud",
+    "pais": "Venezuela",
+    "fecha": "11 de septiembre de 2026",
+    "ciudad": "Pereira, Colombia",
+    "moderador": "Félix Dueñas",
+    "hora": "9:30 - 9:50 a.m"
+  },
+  {
+    "id": "FORO26-PON-002",
+    "nombre": "Zahira Silano",
+    "rol": "PONENTE",
+    "titulo": "CIENCIA ABIERTA EN CONTEXTO DE CRISIS: VISIBILIDAD DIGITAL Y CIRCULACIÓN DEL CONOCIMIENTO DESDE REVISTAS UNIVERSITARIAS VENEZOLANAS",
+    "eje": "Visibilidad científica y mundo digital",
+    "institucion": "Universidad Bicentenaria de Aragua / Universidad de las Ciencias de la Salud",
+    "pais": "Venezuela",
+    "fecha": "11 de septiembre de 2026",
+    "ciudad": "Pereira, Colombia",
+    "moderador": "Félix Dueñas",
+    "hora": "9:30 - 9:50 a.m"
+  }
+]

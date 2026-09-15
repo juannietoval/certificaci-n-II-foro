@@ -709,7 +709,7 @@
   <header>
     <!-- JOURNAL LOGOS -->
     <div class="logos-capsule">
-      <img src="assets/logos_clean.png" alt="Inclusi&oacute;n y Desarrollo | Horizontes Pedag&oacute;gicos | Miradas UTP">
+      <img src="assets/logos_clean.png" alt="Inclusi&oacute;n y Desarrollo | Horizontes Pedag&oacute;gicos | Miradas">
     </div>
     <h1>II FORO DE EDITORES DE REVISTAS CIENT&Iacute;FICAS</h1>
     <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; font-style: italic; color: var(--gold); margin-bottom: 0.35rem; font-weight:600;">Gesti&oacute;n editorial en tiempo de inteligencia artificial</p>
@@ -737,7 +737,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 II Foro de Editores de Revistas Cient&iacute;ficas &bull; Publicaciones Acad&eacute;micas UTP</p>
+    <p>&copy; 2026 II Foro de Editores de Revistas Cient&iacute;ficas &bull; Comit&eacute; Editorial</p>
     <div class="footer-seal">
       <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
       Acreditaci&oacute;n Oficial con Firma Digital y C&oacute;digo QR
@@ -785,7 +785,7 @@
         "tema_central": "Gesti&oacute;n editorial en tiempo de inteligencia artificial",
         "intensidad": "4 horas",
         "modalidad": "Virtual",
-        "institucion": "Universidad Tecnol&oacute;gica de Pereira",
+        "institucion": "",
         "pais": "Colombia",
         "fecha": "Viernes 11 de septiembre de 2026",
         "horario": "8:00 a 12:00 m. (hora Colombia)",
@@ -919,7 +919,7 @@
               <span class="role-tag">Calidad: ${cert.rol}</span>
               <h3 class="recipient-name-display">${cert.nombre}</h3>
               ${docFormatted ? `<div style="font-size:1.05rem; font-weight:700; color:var(--gold); letter-spacing:1px; margin-top:4px;">${docFormatted}</div>` : ''}
-              <div class="recipient-institution">${cert.institucion || 'Universidad Tecnológica de Pereira'} &bull; ${cert.pais || 'Colombia'}</div>
+              ${cert.institucion ? `<div class="recipient-institution">${cert.institucion} &bull; ${cert.pais || 'Colombia'}</div>` : (cert.pais ? `<div class="recipient-institution">${cert.pais}</div>` : '')}
             </div>
 
             <div class="meta-grid">

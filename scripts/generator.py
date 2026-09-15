@@ -19,7 +19,7 @@ DEFAULT_HORARIO = "8:00 a 12:00 m. (hora Colombia)"
 DEFAULT_INTENSIDAD = "4 horas"
 DEFAULT_MODALIDAD = "Virtual"
 DEFAULT_CIUDAD = "Pereira, Colombia"
-DEFAULT_INSTITUCION = "Universidad Tecnológica de Pereira"
+DEFAULT_INSTITUCION = ""
 
 def clean_val(val, default=""):
     if val is None:
@@ -75,8 +75,11 @@ def generate_all():
             cert_html = cert_html.replace("{{INTENSIDAD}}", clean_val(intensidad))
             cert_html = cert_html.replace("{{MODALIDAD}}", clean_val(modalidad))
             cert_html = cert_html.replace("{{FECHA_COMPLETA}}", fecha_completa)
-            cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(institucion))
-            cert_html = cert_html.replace("{{CIUDAD}}", clean_val(ciudad))
+            if institucion:
+                affiliation_line = f"{clean_val(institucion)} &bull; {clean_val(ciudad)}"
+            else:
+                affiliation_line = clean_val(ciudad)
+            cert_html = cert_html.replace("{{AFFILIATION_LINE}}", affiliation_line)
             cert_html = cert_html.replace("{{COORDINACION}}", clean_val(p.get("coordinacion", "Comité Organizador")))
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
         else:

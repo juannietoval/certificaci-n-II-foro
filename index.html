@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Oficial de Verificaci?n | II Foro de Editores de Revistas Cient&iacute;ficas</title>
+  <title>Portal Oficial de Verificaci&oacute;n | II Foro de Editores de Revistas Cient&iacute;ficas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -709,7 +709,7 @@
   <header>
     <!-- JOURNAL LOGOS -->
     <div class="logos-capsule">
-      <img src="assets/logos_clean.png" alt="Inclusi?n y Desarrollo | Horizontes Pedag?gicos | Miradas UTP">
+      <img src="assets/logos_clean.png" alt="Inclusi&oacute;n y Desarrollo | Horizontes Pedag&oacute;gicos | Miradas UTP">
     </div>
     <h1>II FORO DE EDITORES DE REVISTAS CIENT&Iacute;FICAS</h1>
     <p>Portal Oficial de Consulta y Validaci&oacute;n de Autenticidad de Certificados Acad&eacute;micos</p>
@@ -722,18 +722,12 @@
         <div class="search-icon">
           <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
-        <input type="text" id="certInput" class="search-input" placeholder="Ingresa el c?digo del certificado (ej. FORO26-PON-001)" required autocomplete="off" spellcheck="false">
+        <input type="text" id="certInput" class="search-input" placeholder="Ingresa el c&oacute;digo del certificado (ej. FORO-XXXX-XXX)" required autocomplete="off" spellcheck="false">
         <button type="submit" class="search-btn">
           <span>Consultar</span>
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </button>
       </form>
-
-      <div class="quick-examples">
-        <span>C&oacute;digos de prueba r&aacute;pida:</span>
-        <button type="button" class="sample-pill" onclick="searchSample('FORO26-PON-001')">FORO26-PON-001</button>
-        <button type="button" class="sample-pill" onclick="searchSample('FORO26-PON-002')">FORO26-PON-002</button>
-      </div>
     </div>
 
     <!-- RESULT CONTAINER -->
@@ -792,20 +786,15 @@
       return list.find(c => c.id.toUpperCase() === clean);
     }
 
-    function searchSample(code) {
-      document.getElementById('certInput').value = code;
-      handleSearch();
-    }
-
     function togglePreview() {
       const box = document.getElementById('previewBox');
       const btn = document.getElementById('previewBtn');
       if (box.classList.contains('active')) {
         box.classList.remove('active');
-        btn.innerHTML = '<span>Ver vista previa del documento</span> ?';
+        btn.innerHTML = '<span>Ver vista previa del documento</span> <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>';
       } else {
         box.classList.add('active');
-        btn.innerHTML = '<span>Ocultar vista previa</span> ?';
+        btn.innerHTML = '<span>Ocultar vista previa</span> <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>';
       }
     }
 
@@ -813,7 +802,7 @@
       const url = `${window.location.origin}${window.location.pathname}?id=${id}`;
       navigator.clipboard.writeText(url).then(() => {
         const btn = document.getElementById('copyBtn');
-        btn.innerHTML = '? ?Enlace copiado!';
+        btn.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> &iexcl;Enlace copiado!';
         setTimeout(() => {
           btn.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> Copiar Enlace';
         }, 2200);
@@ -827,16 +816,18 @@
           <div class="result-card">
             <div class="status-banner invalid">
               <div class="status-left">
-                <div class="status-icon-circle">?</div>
+                <div class="status-icon-circle">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                </div>
                 <div class="status-info">
                   <h2>CERTIFICADO NO ENCONTRADO</h2>
-                  <p>El c?digo no coincide con ning?n registro oficial emitido.</p>
+                  <p>El c&oacute;digo ingresado no coincide con ning&uacute;n registro oficial emitido.</p>
                 </div>
               </div>
             </div>
             <div class="card-body" style="text-align:center; padding: 2.4rem 1.5rem;">
-              <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 1.4rem auto; font-size: 0.95rem;">
-                Por favor verifique que el c?digo est? escrito exactamente como figura bajo el c?digo QR de su documento (ej. <strong>FORO26-PON-001</strong>).
+              <p style="color: var(--text-muted); max-width: 520px; margin: 0 auto 1.4rem auto; font-size: 0.95rem;">
+                Por favor verifique que el c&oacute;digo est&eacute; escrito exactamente como figura bajo el c&oacute;digo QR de su documento oficial.
               </p>
             </div>
           </div>
@@ -916,7 +907,7 @@
             <!-- EMBEDDED VISUAL PREVIEW TOGGLE -->
             <div class="preview-accordion">
               <button type="button" id="previewBtn" class="preview-toggle-btn" onclick="togglePreview()">
-                <span>Ver vista previa del documento</span> ?
+                <span>Ver vista previa del documento</span> <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div id="previewBox" class="preview-img-box">
                 <img src="${previewUrl}" alt="Certificado ${cert.nombre}">

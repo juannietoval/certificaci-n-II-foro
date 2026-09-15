@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 import json
+import html
 import subprocess
+import pymupdf
 
 BASE = r"c:\Users\Lenovo\Desktop\Juan\sistema_certificados"
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -9,19 +11,19 @@ EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 BROWSER = CHROME if os.path.exists(CHROME) else EDGE
 BASE_WEB_URL = "https://juannietoval.github.io/certificaci-n-II-foro"
 
-def escape_html(text):
-    if not isinstance(text, str):
-        return str(text)
-    return (text.replace("&", "&amp;")
-                .replace("?", "&aacute;").replace("?", "&eacute;").replace("?", "&iacute;").replace("?", "&oacute;").replace("?", "&uacute;")
-                .replace("?", "&Aacute;").replace("?", "&Eacute;").replace("?", "&Iacute;").replace("?", "&Oacute;").replace("?", "&Uacute;")
-                .replace("?", "&ntilde;").replace("?", "&Ntilde;"))
+def clean_val(val, default=""):
+    if val is None:
+        return default
+    text = str(val).strip()
+    return html.escape(text)
 
 def generate_all():
-    with open(os.path.join(BASE, "templates", "master_template.html"), "r", encoding="utf-8") as f:
+    template_path = os.path.join(BASE, "templates", "master_template.html")
+    with open(template_path, "r", encoding="utf-8") as f:
         template = f.read()
 
-    with open(os.path.join(BASE, "data", "participantes.json"), "r", encoding="utf-8") as f:
+    data_path = os.path.join(BASE, "data", "participantes.json")
+    with open(data_path, "r", encoding="utf-8") as f:
         participantes = json.load(f)
 
     for p in participantes:
@@ -32,15 +34,15 @@ def generate_all():
 
         cert_html = template
         cert_html = cert_html.replace("{{ID}}", cert_id)
-        cert_html = cert_html.replace("{{NOMBRE}}", escape_html(nombre))
-        cert_html = cert_html.replace("{{ROL}}", escape_html(p.get("rol", "PONENTE")))
-        cert_html = cert_html.replace("{{TITULO}}", escape_html(p.get("titulo", "")))
-        cert_html = cert_html.replace("{{EJE}}", escape_html(p.get("eje", "")))
-        cert_html = cert_html.replace("{{INSTITUCION}}", escape_html(p.get("institucion", "")))
-        cert_html = cert_html.replace("{{PAIS}}", escape_html(p.get("pais", "")))
-        cert_html = cert_html.replace("{{CIUDAD}}", escape_html(p.get("ciudad", "")))
-        cert_html = cert_html.replace("{{FECHA}}", escape_html(p.get("fecha", "")))
-        cert_html = cert_html.replace("{{MODERADOR}}", escape_html(p.get("moderador", "Comit? Organizador")))
+        cert_html = cert_html.replace("{{NOMBRE}}", clean_val(nombre))
+        cert_html = cert_html.replace("{{ROL}}", clean_val(p.get("rol", "PONENTE")))
+        cert_html = cert_html.replace("{{TITULO}}", clean_val(p.get("titulo", "")))
+        cert_html = cert_html.replace("{{EJE}}", clean_val(p.get("eje", "")))
+        cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(p.get("institucion", "")))
+        cert_html = cert_html.replace("{{PAIS}}", clean_val(p.get("pais", "")))
+        cert_html = cert_html.replace("{{CIUDAD}}", clean_val(p.get("ciudad", "")))
+        cert_html = cert_html.replace("{{FECHA}}", clean_val(p.get("fecha", "")))
+        cert_html = cert_html.replace("{{MODERADOR}}", clean_val(p.get("moderador", "Comité Organizador")))
 
         html_file = os.path.abspath(os.path.join(BASE, "templates", f"{cert_id}.html"))
         with open(html_file, "w", encoding="utf-8") as f_out:
@@ -57,18 +59,18 @@ def generate_all():
         ]
         subprocess.run(cmd_pdf, capture_output=True, text=True)
 
+        # Generate exact high-resolution preview directly from the generated PDF
         png_file = os.path.abspath(os.path.join(BASE, "output", "preview", f"{cert_id}_preview.png"))
-        cmd_png = [
-            BROWSER,
-            "--headless",
-            "--disable-gpu",
-            "--window-size=1414,1000",
-            "--hide-scrollbars",
-            f"--screenshot={png_file}",
-            f"file:///{html_file}"
-        ]
-        subprocess.run(cmd_png, capture_output=True, text=True)
-        print(f"Generated Vector Certificate: {cert_id} - {nombre}")
+        try:
+            doc = pymupdf.open(pdf_file)
+            page = doc[0]
+            pix = page.get_pixmap(dpi=150)
+            pix.save(png_file)
+            doc.close()
+        except Exception as e:
+            print(f"Warning: Could not render PDF preview with PyMuPDF: {e}")
+
+        print(f"Generated Vector Certificate & Exact Preview: {cert_id} - {nombre}")
 
 if __name__ == "__main__":
     generate_all()

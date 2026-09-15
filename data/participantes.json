@@ -24,5 +24,19 @@
     "ciudad": "Pereira, Colombia",
     "moderador": "Félix Dueñas",
     "hora": "9:30 - 9:50 a.m"
+  },
+  {
+    "id": "FORO26-ASI-001",
+    "nombre": "Juan Esteban Nieto Valencia",
+    "cedula": "1089602237",
+    "rol": "ASISTENTE",
+    "tema_central": "Visibilidad científica, acceso abierto y circulación del conocimiento desde revistas académicas",
+    "intensidad": "8 horas académicas",
+    "modalidad": "Presencial",
+    "institucion": "Universidad Tecnológica de Pereira",
+    "pais": "Colombia",
+    "fecha": "11 de septiembre de 2026",
+    "ciudad": "Pereira, Colombia",
+    "coordinacion": "Comité Organizador"
   }
 ]

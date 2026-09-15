@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificado de Asistencia - {{NOMBRE}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: 297mm 210mm;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 297mm;
+      height: 210mm;
+      overflow: hidden;
+      font-family: 'Montserrat', -apple-system, sans-serif;
+      background-color: #fbf9f4;
+    }
+
+    /* MASTER A4 CANVAS */
+    .cert-canvas {
+      position: relative;
+      width: 297mm;
+      height: 210mm;
+      margin: 0 auto;
+      background: radial-gradient(circle at 48% 44%, #ffffff 0%, #faf6ef 55%, #f5eee2 100%);
+      overflow: hidden;
+    }
+
+    /* ARCHIVAL PAPER GRAIN */
+    .paper-texture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.10;
+      background-image: radial-gradient(#baaf98 0.65px, transparent 0.65px);
+      background-size: 14px 14px;
+    }
+
+    /* CORNER REGISTRATION MARKS */
+    .corner-mark {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      pointer-events: none;
+    }
+    .corner-tl { top: 22px; left: 22px; }
+    .corner-tr { top: 22px; right: 22px; }
+    .corner-bl { bottom: 22px; left: 22px; }
+    .corner-br { bottom: 22px; right: 22px; }
+
+    .corner-mark::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #94a3b8;
+      transform: translateY(-50%);
+    }
+    .corner-mark::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background: #94a3b8;
+      transform: translateX(-50%);
+    }
+    .corner-dot {
+      position: absolute;
+      width: 3.5px;
+      height: 3.5px;
+      background: #b89047;
+    }
+    .corner-tl .corner-dot { top: 7px; left: 7px; }
+    .corner-tr .corner-dot { top: 7px; right: 7px; }
+    .corner-bl .corner-dot { bottom: 7px; left: 7px; }
+    .corner-br .corner-dot { bottom: 7px; right: 7px; }
+
+    /* CONCENTRIC GOLDEN ARCS (RIGHT SIDE WATERMARK) */
+    .golden-arcs {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 290px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* HEADER LOGOS */
+    .logos-container {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+    .logos-img {
+      height: 54px;
+      max-width: 520px;
+      object-fit: contain;
+    }
+
+    /* TITLE: CERTIFICADO */
+    .cert-title-block {
+      position: absolute;
+      top: 106px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 2;
+    }
+    .cert-title {
+      font-family: 'Cinzel', serif;
+      font-size: 32pt;
+      font-weight: 700;
+      color: #0b223d;
+      letter-spacing: 8.5px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .gold-accent-dash {
+      width: 48px;
+      height: 2.2px;
+      background: #b89047;
+      margin: 10px auto 0 auto;
+      border-radius: 1px;
+    }
+
+    /* RECIPIENT HERO BLOCK */
+    .recipient-block {
+      position: absolute;
+      top: 176px;
+      left: 8%;
+      right: 8%;
+      text-align: center;
+      z-index: 2;
+    }
+    .recipient-name {
+      font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+      font-size: 27pt;
+      font-weight: 700;
+      color: #0b223d;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+    .recipient-doc {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11pt;
+      font-weight: 600;
+      color: #b89047;
+      letter-spacing: 1.8px;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    /* NAVY DIVIDER LINE UNDER NAME */
+    .navy-divider {
+      position: absolute;
+      top: 248px;
+      left: 16%;
+      right: 16%;
+      height: 1.6px;
+      background: #0b223d;
+      z-index: 2;
+    }
+
+    /* CERTIFICATE BODY TEXT - HARMONIOUS PROPORTIONS FOR ATTENDEE */
+    .body-block {
+      position: absolute;
+      top: 272px;
+      bottom: 120px;
+      left: 12%;
+      right: 12%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      z-index: 2;
+      color: #2b3a4a;
+    }
+
+    .lead-text {
+      font-size: 12pt;
+      font-weight: 400;
+      color: #475569;
+      letter-spacing: 0.6px;
+    }
+
+    .role-badge {
+      font-weight: 700;
+      color: #0b223d;
+      letter-spacing: 1.5px;
+    }
+
+    .event-title {
+      font-family: 'Cinzel', 'Playfair Display', serif;
+      font-size: 16pt;
+      font-weight: 700;
+      color: #0b223d;
+      letter-spacing: 1.4px;
+    }
+
+    .event-theme-box {
+      max-width: 88%;
+      margin: 4px 0;
+    }
+
+    .event-theme-label {
+      font-size: 9.5pt;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #b89047;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .event-theme-desc {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 15pt;
+      font-weight: 600;
+      font-style: italic;
+      color: #0f172a;
+      line-height: 1.35;
+      padding: 0 14px;
+    }
+
+    .intensity-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: #334155;
+      background: rgba(184, 144, 71, 0.08);
+      border: 1px solid rgba(184, 144, 71, 0.3);
+      padding: 5px 18px;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+    }
+
+    .intensity-box strong {
+      color: #0b223d;
+      font-weight: 700;
+    }
+
+    .affiliation {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    .location-date {
+      font-size: 10pt;
+      color: #64748b;
+      letter-spacing: 0.6px;
+    }
+
+    /* SIGNATURES SECTION */
+    .signatures-block {
+      position: absolute;
+      bottom: 50px;
+      left: 17%;
+      right: 23%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      z-index: 2;
+    }
+    .sig-col {
+      width: 42%;
+      text-align: center;
+    }
+    .sig-line {
+      width: 100%;
+      height: 1.2px;
+      background: #0b223d;
+      margin-bottom: 5px;
+    }
+    .sig-accent {
+      width: 32px;
+      height: 1.8px;
+      background: #b89047;
+      margin: 0 auto 6px auto;
+      border-radius: 1px;
+    }
+    .sig-name {
+      font-size: 8.8pt;
+      font-weight: 600;
+      color: #0b223d;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .sig-role {
+      font-size: 7.5pt;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .sig-divider {
+      width: 1px;
+      height: 38px;
+      background: #cbd5e1;
+      margin: 0 10px;
+    }
+
+    /* QR CODE FRAME */
+    .qr-frame {
+      position: absolute;
+      bottom: 46px;
+      right: 60px;
+      width: 82px;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    .qr-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: #b89047;
+      border-style: solid;
+    }
+    .qr-tl { top: 0; left: 0; border-width: 1.8px 0 0 1.8px; }
+    .qr-tr { top: 0; right: 0; border-width: 1.8px 1.8px 0 0; }
+    .qr-bl { bottom: 0; left: 0; border-width: 0 0 1.8px 1.8px; }
+    .qr-br { bottom: 0; right: 0; border-width: 0 1.8px 1.8px 0; }
+
+    #qrcode img, #qrcode canvas {
+      width: 66px !important;
+      height: 66px !important;
+    }
+
+    .cert-id {
+      position: absolute;
+      bottom: 30px;
+      right: 42px;
+      width: 118px;
+      text-align: center;
+      font-size: 6.8pt;
+      font-weight: 600;
+      color: #0b223d;
+      letter-spacing: 0.5px;
+      font-family: monospace;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="cert-canvas">
+    <div class="paper-texture"></div>
+
+    <!-- CORNER REGISTRATION MARKS -->
+    <div class="corner-mark corner-tl"><div class="corner-dot"></div></div>
+    <div class="corner-mark corner-tr"><div class="corner-dot"></div></div>
+    <div class="corner-mark corner-bl"><div class="corner-dot"></div></div>
+    <div class="corner-mark corner-br"><div class="corner-dot"></div></div>
+
+    <!-- CONCENTRIC GOLDEN ARCS (RIGHT SIDE) -->
+    <svg class="golden-arcs" viewBox="0 0 290 794" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="290" cy="397" r="170" stroke="#d4af37" stroke-width="1.2" stroke-opacity="0.55"/>
+      <circle cx="290" cy="397" r="245" stroke="#b89047" stroke-width="1.0" stroke-opacity="0.45"/>
+      <circle cx="290" cy="397" r="335" stroke="#c9a050" stroke-width="1.4" stroke-opacity="0.55"/>
+    </svg>
+
+    <!-- LOGOS HEADER -->
+    <div class="logos-container">
+      <img class="logos-img" src="../assets/logos_clean.png" alt="Logos Revistas Científicas">
+    </div>
+
+    <!-- CERTIFICADO TITLE -->
+    <div class="cert-title-block">
+      <div class="cert-title">Certificado</div>
+      <div class="gold-accent-dash"></div>
+    </div>
+
+    <!-- RECIPIENT HERO BLOCK -->
+    <div class="recipient-block">
+      <div class="recipient-name">{{NOMBRE}}</div>
+      <div class="recipient-doc">{{DOCUMENTO_LINE}}</div>
+    </div>
+
+    <!-- NAVY LINE -->
+    <div class="navy-divider"></div>
+
+    <!-- BODY -->
+    <div class="body-block">
+      <div class="lead-text">
+        Por su asistencia y participaci&oacute;n en calidad de <span class="role-badge">{{ROL}}</span> en el
+      </div>
+
+      <div class="event-title">
+        II FORO DE EDITORES DE REVISTAS CIENT&Iacute;FICAS
+      </div>
+
+      <div class="event-theme-box">
+        <div class="event-theme-label">Eje tem&aacute;tico central</div>
+        <div class="event-theme-desc">
+          &laquo;{{TEMA_CENTRAL}}&raquo;
+        </div>
+      </div>
+
+      <div class="intensity-box">
+        <span>Intensidad: <strong>{{INTENSIDAD}}</strong></span>
+        &bull;
+        <span>Modalidad: <strong>{{MODALIDAD}}</strong></span>
+      </div>
+
+      <div class="affiliation">
+        {{INSTITUCION}}
+      </div>
+
+      <div class="location-date">
+        {{CIUDAD}} &mdash; {{FECHA}}
+      </div>
+    </div>
+
+    <!-- SIGNATURES -->
+    <div class="signatures-block">
+      <div class="sig-col">
+        <div class="sig-line"></div>
+        <div class="sig-accent"></div>
+        <div class="sig-name">Comit&eacute; Editorial</div>
+        <div class="sig-role">Revistas Cient&iacute;ficas UTP</div>
+      </div>
+
+      <div class="sig-divider"></div>
+
+      <div class="sig-col">
+        <div class="sig-line"></div>
+        <div class="sig-accent"></div>
+        <div class="sig-name">{{COORDINACION}}</div>
+        <div class="sig-role">Coordinaci&oacute;n General del Evento</div>
+      </div>
+    </div>
+
+    <!-- QR VERIFICATION FRAME -->
+    <div class="qr-frame">
+      <div class="qr-corner qr-tl"></div>
+      <div class="qr-corner qr-tr"></div>
+      <div class="qr-corner qr-bl"></div>
+      <div class="qr-corner qr-br"></div>
+      <div id="qrcode"></div>
+    </div>
+    <div class="cert-id">{{ID}}</div>
+
+  </div>
+
+  <script src="../assets/qrcode.min.js"></script>
+  <script>
+    new QRCode(document.getElementById("qrcode"), {
+      text: "{{QR_URL}}",
+      width: 66,
+      height: 66,
+      colorDark: "#0b223d",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  </script>
+</body>
+</html>

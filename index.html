@@ -771,6 +771,21 @@
         "ciudad": "Pereira, Colombia",
         "pdf": "output/pdf/FORO26-PON-002_Zahira_Silano.pdf",
         "preview": "output/preview/FORO26-PON-002_preview.png"
+      },
+      {
+        "id": "FORO26-ASI-001",
+        "nombre": "Juan Esteban Nieto Valencia",
+        "cedula": "1089602237",
+        "rol": "ASISTENTE",
+        "tema_central": "Visibilidad cient&iacute;fica, acceso abierto y circulaci&oacute;n del conocimiento desde revistas acad&eacute;micas",
+        "intensidad": "8 horas acad&eacute;micas",
+        "modalidad": "Presencial",
+        "institucion": "Universidad Tecnol&oacute;gica de Pereira",
+        "pais": "Colombia",
+        "fecha": "11 de septiembre de 2026",
+        "ciudad": "Pereira, Colombia",
+        "pdf": "output/pdf/FORO26-ASI-001_Juan_Esteban_Nieto_Valencia.pdf",
+        "preview": "output/preview/FORO26-ASI-001_preview.png"
       }
     ];
 
@@ -837,6 +852,43 @@
 
       const pdfUrl = cert.pdf || `output/pdf/${cert.id}_${cert.nombre.replace(/\s+/g, '_')}.pdf`;
       const previewUrl = cert.preview || `output/preview/${cert.id}_preview.png`;
+      const isAsistente = (cert.rol || '').toUpperCase() === 'ASISTENTE';
+      const docFormatted = cert.cedula ? (`C.C. ${Number(cert.cedula).toLocaleString('es-CO')}`) : '';
+
+      let roleSpecificBoxes = '';
+      if (!isAsistente && cert.titulo) {
+        roleSpecificBoxes = `
+          <div class="meta-box full-width">
+            <div class="meta-label">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path></svg>
+              Ponencia Magistral Presentada
+            </div>
+            <div class="presentation-title-display">&laquo;${cert.titulo}&raquo;</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Eje Tem&aacute;tico</div>
+            <div class="meta-value">${cert.eje || 'General'}</div>
+          </div>
+        `;
+      } else {
+        roleSpecificBoxes = `
+          <div class="meta-box full-width">
+            <div class="meta-label">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path></svg>
+              Tem&aacute;tica Central del Evento
+            </div>
+            <div class="presentation-title-display">&laquo;${cert.tema_central || 'Visibilidad científica, acceso abierto y circulación del conocimiento desde revistas académicas'}&raquo;</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Intensidad Horaria</div>
+            <div class="meta-value">${cert.intensidad || '8 horas académicas'}</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Modalidad</div>
+            <div class="meta-value">${cert.modalidad || 'Presencial'}</div>
+          </div>
+        `;
+      }
 
       container.innerHTML = `
         <div class="result-card">
@@ -860,22 +912,12 @@
             <div class="recipient-header">
               <span class="role-tag">Calidad: ${cert.rol}</span>
               <h3 class="recipient-name-display">${cert.nombre}</h3>
-              <div class="recipient-institution">${cert.institucion} &bull; ${cert.pais}</div>
+              ${docFormatted ? `<div style="font-size:1.05rem; font-weight:700; color:var(--gold); letter-spacing:1px; margin-top:4px;">${docFormatted}</div>` : ''}
+              <div class="recipient-institution">${cert.institucion || 'Universidad Tecnológica de Pereira'} &bull; ${cert.pais || 'Colombia'}</div>
             </div>
 
             <div class="meta-grid">
-              <div class="meta-box full-width">
-                <div class="meta-label">
-                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path></svg>
-                  Ponencia Magistral Presentada
-                </div>
-                <div class="presentation-title-display">&laquo;${cert.titulo}&raquo;</div>
-              </div>
-
-              <div class="meta-box">
-                <div class="meta-label">Eje Tem&aacute;tico</div>
-                <div class="meta-value">${cert.eje}</div>
-              </div>
+              ${roleSpecificBoxes}
 
               <div class="meta-box">
                 <div class="meta-label">C&oacute;digo de Autenticidad</div>
@@ -907,7 +949,8 @@
             <!-- EMBEDDED VISUAL PREVIEW TOGGLE -->
             <div class="preview-accordion">
               <button type="button" id="previewBtn" class="preview-toggle-btn" onclick="togglePreview()">
-                <span>Ver vista previa del documento</span> <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                <span>Ver vista previa del documento</span>
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div id="previewBox" class="preview-img-box">
                 <img src="${previewUrl}" alt="Certificado ${cert.nombre}">

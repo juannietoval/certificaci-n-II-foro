@@ -712,6 +712,7 @@
       <img src="assets/logos_clean.png" alt="Inclusi&oacute;n y Desarrollo | Horizontes Pedag&oacute;gicos | Miradas UTP">
     </div>
     <h1>II FORO DE EDITORES DE REVISTAS CIENT&Iacute;FICAS</h1>
+    <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; font-style: italic; color: var(--gold); margin-bottom: 0.35rem; font-weight:600;">Gesti&oacute;n editorial en tiempo de inteligencia artificial</p>
     <p>Portal Oficial de Consulta y Validaci&oacute;n de Autenticidad de Certificados Acad&eacute;micos</p>
   </header>
 
@@ -754,7 +755,9 @@
         "eje": "Visibilidad cient&iacute;fica y mundo digital",
         "institucion": "Universidad Bicentenaria de Aragua / Universidad de las Ciencias de la Salud",
         "pais": "Venezuela",
-        "fecha": "11 de septiembre de 2026",
+        "modalidad": "Virtual",
+        "fecha": "Viernes 11 de septiembre de 2026",
+        "horario": "8:00 a 12:00 m. (hora Colombia)",
         "ciudad": "Pereira, Colombia",
         "pdf": "output/pdf/FORO26-PON-001_Nohelia_Alfonzo.pdf",
         "preview": "output/preview/FORO26-PON-001_preview.png"
@@ -767,7 +770,9 @@
         "eje": "Visibilidad cient&iacute;fica y mundo digital",
         "institucion": "Universidad Bicentenaria de Aragua / Universidad de las Ciencias de la Salud",
         "pais": "Venezuela",
-        "fecha": "11 de septiembre de 2026",
+        "modalidad": "Virtual",
+        "fecha": "Viernes 11 de septiembre de 2026",
+        "horario": "8:00 a 12:00 m. (hora Colombia)",
         "ciudad": "Pereira, Colombia",
         "pdf": "output/pdf/FORO26-PON-002_Zahira_Silano.pdf",
         "preview": "output/preview/FORO26-PON-002_preview.png"
@@ -777,12 +782,13 @@
         "nombre": "Juan Esteban Nieto Valencia",
         "cedula": "1089602237",
         "rol": "ASISTENTE",
-        "tema_central": "Visibilidad cient&iacute;fica, acceso abierto y circulaci&oacute;n del conocimiento desde revistas acad&eacute;micas",
-        "intensidad": "8 horas acad&eacute;micas",
-        "modalidad": "Presencial",
+        "tema_central": "Gesti&oacute;n editorial en tiempo de inteligencia artificial",
+        "intensidad": "4 horas",
+        "modalidad": "Virtual",
         "institucion": "Universidad Tecnol&oacute;gica de Pereira",
         "pais": "Colombia",
-        "fecha": "11 de septiembre de 2026",
+        "fecha": "Viernes 11 de septiembre de 2026",
+        "horario": "8:00 a 12:00 m. (hora Colombia)",
         "ciudad": "Pereira, Colombia",
         "pdf": "output/pdf/FORO26-ASI-001_Juan_Esteban_Nieto_Valencia.pdf",
         "preview": "output/preview/FORO26-ASI-001_preview.png"
@@ -877,15 +883,15 @@
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path></svg>
               Tem&aacute;tica Central del Evento
             </div>
-            <div class="presentation-title-display">&laquo;${cert.tema_central || 'Visibilidad científica, acceso abierto y circulación del conocimiento desde revistas académicas'}&raquo;</div>
+            <div class="presentation-title-display">&laquo;${cert.tema_central || 'Gesti&oacute;n editorial en tiempo de inteligencia artificial'}&raquo;</div>
           </div>
           <div class="meta-box">
             <div class="meta-label">Intensidad Horaria</div>
-            <div class="meta-value">${cert.intensidad || '8 horas académicas'}</div>
+            <div class="meta-value">${cert.intensidad || '4 horas'}</div>
           </div>
           <div class="meta-box">
             <div class="meta-label">Modalidad</div>
-            <div class="meta-value">${cert.modalidad || 'Presencial'}</div>
+            <div class="meta-value">${cert.modalidad || 'Virtual'}</div>
           </div>
         `;
       }
@@ -925,13 +931,13 @@
               </div>
 
               <div class="meta-box">
-                <div class="meta-label">Fecha de Emisi&oacute;n</div>
-                <div class="meta-value">${cert.fecha}</div>
+                <div class="meta-label">Fecha y Horario</div>
+                <div class="meta-value">${cert.fecha} &bull; ${cert.horario || '8:00 a 12:00 m. (hora Colombia)'}</div>
               </div>
 
               <div class="meta-box">
                 <div class="meta-label">Sede Oficial</div>
-                <div class="meta-value">${cert.ciudad}</div>
+                <div class="meta-value">${cert.ciudad} (${cert.modalidad || 'Virtual'})</div>
               </div>
             </div>
 

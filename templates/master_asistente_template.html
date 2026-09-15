@@ -227,40 +227,26 @@
       letter-spacing: 1.4px;
     }
 
-    .event-theme-box {
-      max-width: 88%;
-      margin: 4px 0;
-    }
-
-    .event-theme-label {
-      font-size: 9.5pt;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #b89047;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    .event-theme-desc {
+    .event-subtitle {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 15pt;
+      font-size: 16.5pt;
       font-weight: 600;
       font-style: italic;
       color: #0f172a;
-      line-height: 1.35;
-      padding: 0 14px;
+      line-height: 1.3;
+      padding: 0 10px;
     }
 
     .intensity-box {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       font-size: 10.5pt;
       font-weight: 500;
       color: #334155;
-      background: rgba(184, 144, 71, 0.08);
-      border: 1px solid rgba(184, 144, 71, 0.3);
-      padding: 5px 18px;
+      background: rgba(184, 144, 71, 0.09);
+      border: 1px solid rgba(184, 144, 71, 0.32);
+      padding: 5px 22px;
       border-radius: 20px;
       letter-spacing: 0.4px;
     }
@@ -270,16 +256,18 @@
       font-weight: 700;
     }
 
-    .affiliation {
-      font-size: 10.5pt;
-      font-weight: 500;
-      color: #475569;
+    .schedule-text {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #0b223d;
+      letter-spacing: 0.8px;
     }
 
-    .location-date {
-      font-size: 10pt;
+    .affiliation {
+      font-size: 9.8pt;
+      font-weight: 500;
       color: #64748b;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.4px;
     }
 
     /* SIGNATURES SECTION */
@@ -420,11 +408,8 @@
         II FORO DE EDITORES DE REVISTAS CIENT&Iacute;FICAS
       </div>
 
-      <div class="event-theme-box">
-        <div class="event-theme-label">Eje tem&aacute;tico central</div>
-        <div class="event-theme-desc">
-          &laquo;{{TEMA_CENTRAL}}&raquo;
-        </div>
+      <div class="event-subtitle">
+        &laquo;Gesti&oacute;n editorial en tiempo de inteligencia artificial&raquo;
       </div>
 
       <div class="intensity-box">
@@ -433,12 +418,12 @@
         <span>Modalidad: <strong>{{MODALIDAD}}</strong></span>
       </div>
 
-      <div class="affiliation">
-        {{INSTITUCION}}
+      <div class="schedule-text">
+        {{FECHA_COMPLETA}}
       </div>
 
-      <div class="location-date">
-        {{CIUDAD}} &mdash; {{FECHA}}
+      <div class="affiliation">
+        {{INSTITUCION}} &bull; {{CIUDAD}}
       </div>
     </div>
 

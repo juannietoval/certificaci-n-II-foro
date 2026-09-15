@@ -11,6 +11,16 @@ EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 BROWSER = CHROME if os.path.exists(CHROME) else EDGE
 BASE_WEB_URL = "https://juannietoval.github.io/certificaci-n-II-foro"
 
+# OFFICIAL EVENT DEFAULTS
+DEFAULT_EVENT_TITLE = "II FORO DE EDITORES DE REVISTAS CIENTÍFICAS"
+DEFAULT_EVENT_SUBTITLE = "Gestión editorial en tiempo de inteligencia artificial"
+DEFAULT_FECHA = "Viernes 11 de septiembre de 2026"
+DEFAULT_HORARIO = "8:00 a 12:00 m. (hora Colombia)"
+DEFAULT_INTENSIDAD = "4 horas"
+DEFAULT_MODALIDAD = "Virtual"
+DEFAULT_CIUDAD = "Pereira, Colombia"
+DEFAULT_INSTITUCION = "Universidad Tecnológica de Pereira"
+
 def clean_val(val, default=""):
     if val is None:
         return default
@@ -46,32 +56,41 @@ def generate_all():
         rol = p.get("rol", "PONENTE").upper()
         qr_url = f"{BASE_WEB_URL}/?id={cert_id}"
 
+        fecha = p.get("fecha", DEFAULT_FECHA)
+        horario = p.get("horario", DEFAULT_HORARIO)
+        modalidad = p.get("modalidad", DEFAULT_MODALIDAD)
+        ciudad = p.get("ciudad", DEFAULT_CIUDAD)
+        institucion = p.get("institucion", DEFAULT_INSTITUCION)
+
         if rol == "ASISTENTE":
             cert_html = template_asistente
             doc_line = format_doc(p.get("cedula", ""))
+            intensidad = p.get("intensidad", DEFAULT_INTENSIDAD)
+            fecha_completa = f"{clean_val(fecha)} &bull; {clean_val(horario)}"
+
             cert_html = cert_html.replace("{{ID}}", cert_id)
             cert_html = cert_html.replace("{{NOMBRE}}", clean_val(nombre))
             cert_html = cert_html.replace("{{DOCUMENTO_LINE}}", clean_val(doc_line))
             cert_html = cert_html.replace("{{ROL}}", "ASISTENTE")
-            cert_html = cert_html.replace("{{TEMA_CENTRAL}}", clean_val(p.get("tema_central", "Visibilidad científica, acceso abierto y circulación del conocimiento desde revistas académicas")))
-            cert_html = cert_html.replace("{{INTENSIDAD}}", clean_val(p.get("intensidad", "8 horas académicas")))
-            cert_html = cert_html.replace("{{MODALIDAD}}", clean_val(p.get("modalidad", "Presencial")))
-            cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(p.get("institucion", "Universidad Tecnológica de Pereira")))
-            cert_html = cert_html.replace("{{CIUDAD}}", clean_val(p.get("ciudad", "Pereira, Colombia")))
-            cert_html = cert_html.replace("{{FECHA}}", clean_val(p.get("fecha", "11 de septiembre de 2026")))
+            cert_html = cert_html.replace("{{INTENSIDAD}}", clean_val(intensidad))
+            cert_html = cert_html.replace("{{MODALIDAD}}", clean_val(modalidad))
+            cert_html = cert_html.replace("{{FECHA_COMPLETA}}", fecha_completa)
+            cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(institucion))
+            cert_html = cert_html.replace("{{CIUDAD}}", clean_val(ciudad))
             cert_html = cert_html.replace("{{COORDINACION}}", clean_val(p.get("coordinacion", "Comité Organizador")))
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
         else:
             cert_html = template_ponente
+            ciudad_disp = f"{ciudad} (Modalidad {modalidad})" if modalidad else ciudad
             cert_html = cert_html.replace("{{ID}}", cert_id)
             cert_html = cert_html.replace("{{NOMBRE}}", clean_val(nombre))
             cert_html = cert_html.replace("{{ROL}}", clean_val(p.get("rol", "PONENTE")))
             cert_html = cert_html.replace("{{TITULO}}", clean_val(p.get("titulo", "")))
             cert_html = cert_html.replace("{{EJE}}", clean_val(p.get("eje", "")))
-            cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(p.get("institucion", "")))
+            cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(institucion))
             cert_html = cert_html.replace("{{PAIS}}", clean_val(p.get("pais", "")))
-            cert_html = cert_html.replace("{{CIUDAD}}", clean_val(p.get("ciudad", "")))
-            cert_html = cert_html.replace("{{FECHA}}", clean_val(p.get("fecha", "")))
+            cert_html = cert_html.replace("{{CIUDAD}}", clean_val(ciudad_disp))
+            cert_html = cert_html.replace("{{FECHA}}", clean_val(fecha))
             cert_html = cert_html.replace("{{MODERADOR}}", clean_val(p.get("moderador", "Comité Organizador")))
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
 

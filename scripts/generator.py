@@ -124,6 +124,7 @@ def generate_all():
             cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(institucion))
             cert_html = cert_html.replace("{{PAIS}}", clean_val(p.get("pais", "")))
             cert_html = cert_html.replace("{{LOCATION_DATE}}", location_date)
+            cert_html = cert_html.replace("{{COORDINACION}}", clean_val(p.get("coordinacion", "Comité Organizador")))
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
 
         html_file = os.path.abspath(os.path.join(BASE, "templates", f"{cert_id}.html"))

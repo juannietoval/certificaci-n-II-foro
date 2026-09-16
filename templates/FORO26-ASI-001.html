@@ -60,10 +60,10 @@
       height: 34px;
       pointer-events: none;
     }
-    .corner-tl { top: 22px; left: 22px; }
-    .corner-tr { top: 22px; right: 22px; }
-    .corner-bl { bottom: 22px; left: 22px; }
-    .corner-br { bottom: 22px; right: 22px; }
+    .corner-tl { top: 17px; left: 17px; }
+    .corner-tr { top: 17px; right: 17px; }
+    .corner-bl { bottom: 17px; left: 17px; }
+    .corner-br { bottom: 17px; right: 17px; }
 
     .corner-mark::before {
       content: '';
@@ -89,7 +89,7 @@
       position: absolute;
       width: 3.5px;
       height: 3.5px;
-      background: #b89047;
+      background: #8C6D3B;
     }
     .corner-tl .corner-dot { top: 7px; left: 7px; }
     .corner-tr .corner-dot { top: 7px; right: 7px; }
@@ -110,7 +110,7 @@
     /* HEADER LOGOS */
     .logos-container {
       position: absolute;
-      top: 32px;
+      top: 28px;
       left: 0;
       right: 0;
       display: flex;
@@ -119,7 +119,7 @@
       z-index: 2;
     }
     .logos-img {
-      height: 54px;
+      height: 50px;
       max-width: 520px;
       object-fit: contain;
     }
@@ -138,22 +138,44 @@
       font-size: 32pt;
       font-weight: 700;
       color: #0b223d;
-      letter-spacing: 8.5px;
+      letter-spacing: 12px;
       text-transform: uppercase;
       line-height: 1;
     }
     .gold-accent-dash {
       width: 48px;
       height: 2.2px;
-      background: #b89047;
+      background: #8C6D3B;
       margin: 10px auto 0 auto;
       border-radius: 1px;
+    }
+
+    /* DIPLOMA PERIMETER BORDER */
+    .diploma-border-outer {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      right: 13px;
+      bottom: 13px;
+      border: 1.2px solid rgba(11, 34, 61, 0.40);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .diploma-border-inner {
+      position: absolute;
+      top: 17px;
+      left: 17px;
+      right: 17px;
+      bottom: 17px;
+      border: 0.6px solid rgba(140, 109, 59, 0.50);
+      pointer-events: none;
+      z-index: 1;
     }
 
     /* RECIPIENT HERO BLOCK */
     .recipient-block {
       position: absolute;
-      top: 176px;
+      top: 172px;
       left: 8%;
       right: 8%;
       text-align: center;
@@ -171,30 +193,24 @@
     }
     .recipient-doc {
       font-family: 'Montserrat', sans-serif;
-      font-size: 11pt;
+      font-size: 10.5pt;
       font-weight: 600;
-      color: #b89047;
+      color: #8C6D3B;
       letter-spacing: 1.8px;
-      margin-top: 6px;
+      margin-top: 5px;
       text-transform: uppercase;
     }
 
-    /* NAVY DIVIDER LINE UNDER NAME */
+    /* NAVY DIVIDER - REPLACED BY PERIMETER FRAME */
     .navy-divider {
-      position: absolute;
-      top: 248px;
-      left: 16%;
-      right: 16%;
-      height: 1.6px;
-      background: #0b223d;
-      z-index: 2;
+      display: none;
     }
 
     /* CERTIFICATE BODY TEXT - HARMONIOUS PROPORTIONS FOR ATTENDEE */
     .body-block {
       position: absolute;
-      top: 272px;
-      bottom: 120px;
+      top: 248px;
+      bottom: 154px;
       left: 12%;
       right: 12%;
       display: flex;
@@ -207,7 +223,7 @@
     }
 
     .lead-text {
-      font-size: 12pt;
+      font-size: 11.5pt;
       font-weight: 400;
       color: #475569;
       letter-spacing: 0.6px;
@@ -232,28 +248,21 @@
       font-size: 16.5pt;
       font-weight: 600;
       font-style: italic;
-      color: #0f172a;
+      color: #8C6D3B;
       line-height: 1.3;
       padding: 0 10px;
     }
 
-    .intensity-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 10.5pt;
+    .meta-strip {
+      font-size: 9.5pt;
       font-weight: 500;
-      color: #334155;
-      background: rgba(184, 144, 71, 0.09);
-      border: 1px solid rgba(184, 144, 71, 0.32);
-      padding: 5px 22px;
-      border-radius: 20px;
-      letter-spacing: 0.4px;
+      color: #64748b;
+      letter-spacing: 0.6px;
+      margin: 4px 0;
     }
-
-    .intensity-box strong {
-      color: #0b223d;
-      font-weight: 700;
+    .meta-strip strong {
+      color: #1e293b;
+      font-weight: 600;
     }
 
     .affiliation {
@@ -262,26 +271,15 @@
       color: #64748b;
       letter-spacing: 0.4px;
     }
-    .organizers-line {
-      font-size: 9.5pt;
-      font-weight: 500;
-      color: #64748b;
-      letter-spacing: 0.5px;
-    }
-    .organizers-line strong {
-      color: #0b223d;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-    }
 
     .location-date {
       position: absolute;
-      bottom: 14px;
+      bottom: 25px;
       left: 0;
       right: 0;
-      font-size: 9pt;
+      font-size: 8.5pt;
       color: #64748b;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
       text-align: center;
       z-index: 2;
     }
@@ -289,7 +287,7 @@
     /* SIGNATURES SECTION */
     .signatures-block {
       position: absolute;
-      bottom: 42px;
+      bottom: 48px;
       left: 0;
       right: 0;
       display: flex;
@@ -298,33 +296,47 @@
       z-index: 2;
     }
     .sig-col {
-      width: 280px;
+      width: 290px;
       text-align: center;
+      position: relative;
+    }
+    .sig-rubric {
+      width: 120px;
+      height: 26px;
+      margin: 0 auto -2px auto;
+      display: block;
     }
     .sig-line {
       width: 100%;
       height: 1.2px;
       background: #0b223d;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
     .sig-accent {
-      width: 32px;
+      width: 36px;
       height: 1.8px;
-      background: #b89047;
-      margin: 0 auto 6px auto;
+      background: #8C6D3B;
+      margin: 0 auto 4px auto;
       border-radius: 1px;
     }
     .sig-name {
       font-size: 8.8pt;
-      font-weight: 600;
+      font-weight: 700;
       color: #0b223d;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.8px;
     }
     .sig-role {
-      font-size: 7.5pt;
+      font-size: 7.6pt;
       color: #64748b;
-      margin-top: 2px;
+      margin-top: 1px;
+    }
+    .sig-univs {
+      font-size: 7.8pt;
+      font-weight: 700;
+      color: #8C6D3B;
+      letter-spacing: 0.8px;
+      margin-top: 3px;
     }
     .sig-divider {
       width: 1px;
@@ -336,10 +348,10 @@
     /* QR CODE FRAME */
     .qr-frame {
       position: absolute;
-      bottom: 48px;
-      right: 48px;
-      width: 82px;
-      height: 82px;
+      bottom: 42px;
+      right: 42px;
+      width: 78px;
+      height: 78px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -349,7 +361,7 @@
       position: absolute;
       width: 12px;
       height: 12px;
-      border-color: #b89047;
+      border-color: #8C6D3B;
       border-style: solid;
     }
     .qr-tl { top: 0; left: 0; border-width: 1.8px 0 0 1.8px; }
@@ -358,15 +370,15 @@
     .qr-br { bottom: 0; right: 0; border-width: 0 1.8px 1.8px 0; }
 
     #qrcode img, #qrcode canvas {
-      width: 66px !important;
-      height: 66px !important;
+      width: 64px !important;
+      height: 64px !important;
     }
 
     .cert-id {
       position: absolute;
-      bottom: 32px;
-      right: 30px;
-      width: 118px;
+      bottom: 25px;
+      right: 28px;
+      width: 106px;
       text-align: center;
       font-size: 6.8pt;
       font-weight: 600;
@@ -380,6 +392,10 @@
 <body>
   <div class="cert-canvas">
     <div class="paper-texture"></div>
+
+    <!-- DIPLOMA PERIMETER BORDER -->
+    <div class="diploma-border-outer"></div>
+    <div class="diploma-border-inner"></div>
 
     <!-- CORNER REGISTRATION MARKS -->
     <div class="corner-mark corner-tl"><div class="corner-dot"></div></div>
@@ -428,26 +444,26 @@
         &laquo;Gesti&oacute;n editorial en tiempos de inteligencia artificial&raquo;
       </div>
 
-      <div class="intensity-box">
-        <span>Intensidad: <strong>4 horas</strong></span>
-        &bull;
-        <span>Horario: <strong>8:00 a. m. a 12:00 m. (hora Colombia)</strong></span>
+      <div class="meta-strip">
+        Intensidad: <strong>4 horas</strong> &nbsp;&bull;&nbsp; Horario: <strong>8:00 a. m. a 12:00 m. (hora Colombia)</strong> &nbsp;&bull;&nbsp; Modalidad: <strong>Virtual</strong>
       </div>
 
       
-
-      <div class="organizers-line">
-        Universidades organizadoras: <strong>UNIMINUTO</strong> &bull; <strong>IBERO</strong> &bull; <strong>UTP</strong>
-      </div>
     </div>
 
     <!-- SIGNATURE -->
     <div class="signatures-block">
       <div class="sig-col">
+        <svg class="sig-rubric" viewBox="0 0 160 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 28 C28 12, 38 6, 48 22 C55 32, 60 14, 72 18 C84 22, 80 34, 94 25 C106 16, 118 20, 130 14 C136 11, 146 10, 150 14" stroke="#0b223d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.82"/>
+          <path d="M26 25 C46 34, 88 35, 144 19" stroke="#0b223d" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M50 14 C58 5, 68 3, 70 12 C72 19, 66 26, 60 30" stroke="#8C6D3B" stroke-width="1.0" stroke-linecap="round" opacity="0.55"/>
+        </svg>
         <div class="sig-line"></div>
         <div class="sig-accent"></div>
         <div class="sig-name">Comité Organizador</div>
         <div class="sig-role">Coordinaci&oacute;n General del Evento</div>
+        <div class="sig-univs">UNIMINUTO &bull; IBERO &bull; UTP</div>
       </div>
     </div>
 

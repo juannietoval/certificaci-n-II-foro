@@ -169,6 +169,13 @@
       line-height: 1.1;
       white-space: nowrap;
     }
+    .doc-line {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #b89047;
+      letter-spacing: 1.2px;
+      margin-top: 4px;
+    }
 
     /* NAVY DIVIDER LINE UNDER NAME */
     .navy-divider {
@@ -228,6 +235,25 @@
       margin-top: 1px;
     }
 
+    .intensity-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10pt;
+      font-weight: 500;
+      color: #334155;
+      background: rgba(184, 144, 71, 0.09);
+      border: 1px solid rgba(184, 144, 71, 0.32);
+      padding: 5px 22px;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+    }
+
+    .intensity-box strong {
+      color: #0b223d;
+      font-weight: 700;
+    }
+
     .thematic-axis {
       font-size: 10.5pt;
       color: #64748b;
@@ -255,11 +281,11 @@
 
     .presentation-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 15.5pt;
+      font-size: 14pt;
       font-weight: 600;
       font-style: italic;
       color: #0f172a;
-      line-height: 1.35;
+      line-height: 1.3;
       padding: 0 16px;
     }
 
@@ -270,15 +296,21 @@
     }
 
     .location-date {
-      font-size: 10pt;
+      position: absolute;
+      bottom: 14px;
+      left: 10%;
+      right: 22%;
+      font-size: 9pt;
       color: #64748b;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
+      text-align: center;
+      z-index: 2;
     }
 
     /* SIGNATURES SECTION */
     .signatures-block {
       position: absolute;
-      bottom: 50px;
+      bottom: 42px;
       left: 17%;
       right: 23%;
       display: flex;
@@ -325,8 +357,8 @@
     /* QR CODE FRAME */
     .qr-frame {
       position: absolute;
-      bottom: 46px;
-      right: 60px;
+      bottom: 48px;
+      right: 48px;
       width: 82px;
       height: 82px;
       display: flex;
@@ -353,8 +385,8 @@
 
     .cert-id {
       position: absolute;
-      bottom: 30px;
-      right: 42px;
+      bottom: 32px;
+      right: 30px;
       width: 118px;
       text-align: center;
       font-size: 6.8pt;
@@ -397,6 +429,7 @@
     <!-- RECIPIENT HERO -->
     <div class="recipient-block">
       <div class="recipient-name">Nohelia Alfonzo</div>
+      
     </div>
 
     <!-- NAVY DIVIDER -->
@@ -412,17 +445,23 @@
         II FORO DE EDITORES DE REVISTAS CIENT&Iacute;FICAS
       </div>
       <div class="event-subtitle">
-        Gesti&oacute;n editorial en tiempo de inteligencia artificial
+        &laquo;Gesti&oacute;n editorial en tiempos de inteligencia artificial&raquo;
       </div>
 
       <div class="thematic-axis">
         Eje tem&aacute;tico: <strong>Visibilidad científica y mundo digital</strong>
       </div>
 
+      <div class="intensity-box">
+        <span>Intensidad: <strong>4 horas</strong></span>
+        &bull;
+        <span>Horario: <strong>8:00 a. m. a 12:00 m. (hora Colombia)</strong></span>
+      </div>
+
       <div class="presentation-box">
         <div class="presentation-intro">Ponencia magistral</div>
         <div class="presentation-title">
-          &laquo;CIENCIA ABIERTA EN CONTEXTO DE CRISIS: VISIBILIDAD DIGITAL Y CIRCULACIÓN DEL CONOCIMIENTO DESDE REVISTAS UNIVERSITARIAS VENEZOLANAS&raquo;
+          &laquo;Ciencia abierta en contexto de crisis: Visibilidad digital y circulación del conocimiento desde revistas universitarias venezolanas&raquo;
         </div>
       </div>
 
@@ -430,9 +469,7 @@
         Universidad Bicentenaria de Aragua / Universidad de las Ciencias de la Salud &bull; Venezuela
       </div>
 
-      <div class="location-date">
-        Pereira, Colombia (Modalidad Virtual) &mdash; Viernes 11 de septiembre de 2026
-      </div>
+
     </div>
 
     <!-- SIGNATURES -->
@@ -448,8 +485,8 @@
       <div class="sig-col">
         <div class="sig-line"></div>
         <div class="sig-accent"></div>
-        <div class="sig-name">Félix Dueñas</div>
-        <div class="sig-role">Moderador de Eje / Coordinaci&oacute;n</div>
+        <div class="sig-name">Comit&eacute; Organizador</div>
+        <div class="sig-role">Coordinaci&oacute;n General del Evento</div>
       </div>
     </div>
 
@@ -462,6 +499,9 @@
       <div id="qrcode"></div>
     </div>
     <div class="cert-id">FORO26-PON-001</div>
+
+    <!-- LOCATION & DATE — BOTTOM OF CERTIFICATE -->
+    <div class="location-date">Pereira, Colombia (Modalidad Virtual) &mdash; Viernes 11 de septiembre de 2026</div>
 
   </div>
 

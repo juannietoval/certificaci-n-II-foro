@@ -13,7 +13,7 @@ BASE_WEB_URL = "https://juannietoval.github.io/certificaci-n-II-foro"
 
 # OFFICIAL EVENT DEFAULTS
 DEFAULT_EVENT_TITLE = "II FORO DE EDITORES DE REVISTAS CIENTÍFICAS"
-DEFAULT_EVENT_SUBTITLE = "Gestión editorial en tiempo de inteligencia artificial"
+DEFAULT_EVENT_SUBTITLE = "Gestión editorial en tiempos de inteligencia artificial"
 DEFAULT_FECHA = "Viernes 11 de septiembre de 2026"
 DEFAULT_HORARIO = "8:00 a 12:00 m. (hora Colombia)"
 DEFAULT_INTENSIDAD = "4 horas"
@@ -35,6 +35,21 @@ def format_doc(doc_str):
         num = int(s)
         return f"C.C. {num:,}".replace(",", ".")
     return f"Doc. {s}"
+
+def title_case_ponencia(titulo):
+    """Convert ALL CAPS title to sentence case for readability."""
+    if not titulo:
+        return ""
+    # Convert to sentence case: first letter uppercase, rest lowercase
+    # But preserve uppercase after colon
+    parts = titulo.split(": ")
+    result = []
+    for i, part in enumerate(parts):
+        if i == 0:
+            result.append(part[0].upper() + part[1:].lower() if len(part) > 1 else part.upper())
+        else:
+            result.append(part[0].upper() + part[1:].lower() if len(part) > 1 else part.upper())
+    return ": ".join(result)
 
 def generate_all():
     template_ponente_path = os.path.join(BASE, "templates", "master_template.html")
@@ -86,17 +101,29 @@ def generate_all():
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
         else:
             cert_html = template_ponente
+            doc_line = format_doc(p.get("cedula", ""))
+            intensidad = p.get("intensidad", DEFAULT_INTENSIDAD)
+            horario = p.get("horario", DEFAULT_HORARIO)
             ciudad_disp = f"{ciudad} (Modalidad {modalidad})" if modalidad else ciudad
+            location_date = f"{ciudad_disp} &mdash; {clean_val(fecha)}"
+            titulo_raw = p.get("titulo", "")
+            titulo_display = title_case_ponencia(titulo_raw)
+
             cert_html = cert_html.replace("{{ID}}", cert_id)
             cert_html = cert_html.replace("{{NOMBRE}}", clean_val(nombre))
+            if doc_line:
+                doc_block = f'<div class="doc-line">{clean_val(doc_line)}</div>'
+            else:
+                doc_block = ''
+            cert_html = cert_html.replace("{{DOCUMENTO_LINE}}", doc_block)
             cert_html = cert_html.replace("{{ROL}}", clean_val(p.get("rol", "PONENTE")))
-            cert_html = cert_html.replace("{{TITULO}}", clean_val(p.get("titulo", "")))
+            cert_html = cert_html.replace("{{TITULO}}", clean_val(titulo_display))
             cert_html = cert_html.replace("{{EJE}}", clean_val(p.get("eje", "")))
+            cert_html = cert_html.replace("{{INTENSIDAD}}", clean_val(intensidad))
+            cert_html = cert_html.replace("{{HORARIO}}", clean_val(horario))
             cert_html = cert_html.replace("{{INSTITUCION}}", clean_val(institucion))
             cert_html = cert_html.replace("{{PAIS}}", clean_val(p.get("pais", "")))
-            cert_html = cert_html.replace("{{CIUDAD}}", clean_val(ciudad_disp))
-            cert_html = cert_html.replace("{{FECHA}}", clean_val(fecha))
-            cert_html = cert_html.replace("{{MODERADOR}}", clean_val(p.get("moderador", "Comité Organizador")))
+            cert_html = cert_html.replace("{{LOCATION_DATE}}", location_date)
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
 
         html_file = os.path.abspath(os.path.join(BASE, "templates", f"{cert_id}.html"))

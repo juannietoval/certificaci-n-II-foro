@@ -31,10 +31,15 @@ def format_doc(doc_str):
     if not doc_str:
         return ""
     s = str(doc_str).strip()
+    upper_s = s.upper()
+    prefixes = ("C.C.", "CC", "D.I.", "DI", "DNI", "PASAPORTE", "PAS.", "PAS", "C.E.", "CE")
+    for pfx in prefixes:
+        if upper_s.startswith(pfx):
+            return s
     if s.isdigit():
         num = int(s)
         return f"C.C. {num:,}".replace(",", ".")
-    return f"Doc. {s}"
+    return f"D.I. {s}"
 
 def title_case_ponencia(titulo):
     """Convert ALL CAPS title to sentence case for readability."""

@@ -175,7 +175,7 @@
     /* RECIPIENT HERO BLOCK */
     .recipient-block {
       position: absolute;
-      top: 180px;
+      top: 172px;
       left: 12%;
       right: 12%;
       text-align: center;
@@ -183,7 +183,7 @@
     }
     .recipient-name {
       font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
-      font-size: 28pt;
+      font-size: 29pt;
       font-weight: 700;
       color: #0b223d;
       letter-spacing: 2px;
@@ -208,12 +208,10 @@
     .body-block {
       position: absolute;
       top: 248px;
-      bottom: 154px;
-      left: 12%;
-      right: 12%;
+      left: 10%;
+      right: 10%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
       text-align: center;
       z-index: 2;
@@ -221,10 +219,11 @@
     }
 
     .lead-text {
-      font-size: 11.5pt;
+      font-size: 11pt;
       font-weight: 400;
       color: #475569;
       letter-spacing: 0.6px;
+      margin-bottom: 16px;
     }
 
     .role-badge {
@@ -235,10 +234,11 @@
 
     .event-title {
       font-family: 'Cinzel', 'Playfair Display', serif;
-      font-size: 15pt;
+      font-size: 13.5pt;
       font-weight: 700;
       color: #0b223d;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.4px;
+      margin-bottom: 4px;
     }
 
     .event-subtitle {
@@ -248,7 +248,7 @@
       font-style: italic;
       color: #8C6D3B;
       letter-spacing: 0.6px;
-      margin-top: 1px;
+      margin-bottom: 16px;
     }
 
     .meta-strip {
@@ -256,7 +256,7 @@
       font-weight: 500;
       color: #64748b;
       letter-spacing: 0.6px;
-      margin: 2px 0;
+      margin-bottom: 20px;
     }
 
     .meta-strip strong {
@@ -277,11 +277,11 @@
 
     .presentation-box {
       max-width: 90%;
-      margin: 8px 0 2px 0;
+      margin: 0;
     }
 
     .presentation-intro {
-      font-size: 8.8pt;
+      font-size: 8.5pt;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #8C6D3B;
@@ -291,19 +291,19 @@
 
     .presentation-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 14pt;
+      font-size: 13.5pt;
       font-weight: 600;
       font-style: italic;
       color: #0b223d;
-      line-height: 1.32;
+      line-height: 1.3;
       padding: 0 12px;
     }
 
     .affiliation {
-      font-size: 10pt;
+      font-size: 9.5pt;
       font-weight: 500;
       color: #475569;
-      margin-top: 5px;
+      margin-top: 6px;
       letter-spacing: 0.3px;
     }
 
@@ -380,7 +380,20 @@
       margin: 0 10px;
     }
 
-    /* QR CODE FRAME */
+    /* QR CODE & VERIFICATION */
+    .qr-cta {
+      position: absolute;
+      bottom: 124px;
+      right: 28px;
+      width: 106px;
+      text-align: center;
+      font-size: 5.6pt;
+      font-weight: 700;
+      color: #8C6D3B;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
     .qr-frame {
       position: absolute;
       bottom: 42px;
@@ -510,6 +523,7 @@
     </div>
 
     <!-- QR VERIFICATION FRAME -->
+    <div class="qr-cta">VALIDAR AUTENTICIDAD</div>
     <div class="qr-frame">
       <div class="qr-corner qr-tl"></div>
       <div class="qr-corner qr-tr"></div>

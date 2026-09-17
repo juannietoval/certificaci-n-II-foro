@@ -248,45 +248,22 @@
       font-style: italic;
       color: #8C6D3B;
       letter-spacing: 0.6px;
-      margin-bottom: 16px;
-    }
-
-    .meta-strip {
-      font-size: 8.8pt;
-      font-weight: 500;
-      color: #64748b;
-      letter-spacing: 0.6px;
-      margin-bottom: 20px;
-    }
-
-    .meta-strip strong {
-      color: #1e293b;
-      font-weight: 600;
-    }
-
-    .thematic-axis {
-      font-size: 10.5pt;
-      color: #64748b;
-      font-style: italic;
-    }
-    .thematic-axis strong {
-      color: #334155;
-      font-style: normal;
-      font-weight: 600;
+      margin-bottom: 14px;
     }
 
     .presentation-box {
       max-width: 90%;
-      margin: 0;
+      margin: 0 0 16px 0;
     }
 
-    .presentation-intro {
-      font-size: 8.5pt;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .presentation-connector {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 12pt;
+      font-style: italic;
       color: #8C6D3B;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 4px;
+      letter-spacing: 0.4px;
     }
 
     .presentation-title {
@@ -303,8 +280,20 @@
       font-size: 9.5pt;
       font-weight: 500;
       color: #475569;
-      margin-top: 6px;
+      margin-top: 5px;
       letter-spacing: 0.3px;
+    }
+
+    .meta-strip {
+      font-size: 8.8pt;
+      font-weight: 500;
+      color: #64748b;
+      letter-spacing: 0.6px;
+    }
+
+    .meta-strip strong {
+      color: #1e293b;
+      font-weight: 600;
     }
 
     .location-date {
@@ -491,18 +480,18 @@
         &laquo;Gesti&oacute;n editorial en tiempos de inteligencia artificial&raquo;
       </div>
 
-      <div class="meta-strip">
-        Eje tem&aacute;tico: <strong>{{EJE}}</strong> &nbsp;&bull;&nbsp; Intensidad: <strong>{{INTENSIDAD}}</strong> &nbsp;&bull;&nbsp; Horario: <strong>{{HORARIO}}</strong>
-      </div>
-
       <div class="presentation-box">
-        <div class="presentation-intro">Ponencia magistral</div>
+        <div class="presentation-connector">con la ponencia magistral:</div>
         <div class="presentation-title">
           &laquo;{{TITULO}}&raquo;
         </div>
         <div class="affiliation">
           {{INSTITUCION}} &bull; {{PAIS}}
         </div>
+      </div>
+
+      <div class="meta-strip">
+        Eje tem&aacute;tico: <strong>{{EJE}}</strong> &nbsp;&bull;&nbsp; Intensidad: <strong>{{INTENSIDAD}}</strong>
       </div>
     </div>
 

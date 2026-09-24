@@ -28,6 +28,7 @@ const CONFIG = {
   ID_CARPETA_DRIVE: "",
   
   // Nombres de las hojas
+  HOJA_PILOTO: "Piloto_Ponentes",
   HOJA_PRUEBA: "Prueba_Envio",
   HOJA_ASISTENTES: "Asistentes",
   HOJA_PONENTES: "Ponentes"
@@ -37,12 +38,13 @@ const CONFIG = {
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu("Envío de Certificados")
-    .addItem("1. Enviar prueba a mis 2 correos (UTP y Gmail)", "enviarPruebaDosDestinatarios")
+    .addItem("1. Ejecutar PILOTO: Enviar 12 Ponentes a mi correo UTP", "enviarPilotoPonentes")
+    .addItem("2. Enviar prueba específica (Juan UTP y Erika Gmail)", "enviarPruebaDosDestinatarios")
     .addSeparator()
-    .addItem("2. Enviar certificados a Asistentes (Pendientes)", "enviarAsistentes")
-    .addItem("3. Enviar certificados a Ponentes (Pendientes)", "enviarPonentes")
+    .addItem("3. Enviar a Ponentes (Correos reales pendientes)", "enviarPonentes")
+    .addItem("4. Enviar a Asistentes (Correos reales pendientes)", "enviarAsistentes")
     .addSeparator()
-    .addItem("4. Enviar a TODOS los pendientes", "enviarTodos")
+    .addItem("5. Enviar a TODOS los pendientes", "enviarTodos")
     .addToUi();
 }
 
@@ -152,7 +154,11 @@ function enviarPruebaDosDestinatarios() {
   }
 }
 
-// ================= ENVÍOS MASIVOS POR PESTAÑAS =================
+// ================= ENVÍOS MASIVOS Y PILOTO POR PESTAÑAS =================
+function enviarPilotoPonentes() {
+  procesarHoja(CONFIG.HOJA_PILOTO || "Piloto_Ponentes", "PONENTE");
+}
+
 function enviarAsistentes() {
   procesarHoja(CONFIG.HOJA_ASISTENTES, "ASISTENTE");
 }
@@ -184,9 +190,12 @@ function procesarHoja(nombreHoja, tipoRol) {
 
   const headers = data[0];
   const colId = headers.indexOf("Código Certificado");
-  const colNombre = headers.indexOf("Nombre Completo");
-  const colEmail = headers.indexOf("Correo Electrónico") !== -1 ? headers.indexOf("Correo Electrónico") : headers.indexOf("Correo");
-  const colVerif = headers.indexOf("Enlace Verificación QR");
+  const colNombre = headers.indexOf("Nombre Completo") !== -1 ? headers.indexOf("Nombre Completo") : headers.indexOf("Nombre Ponente");
+  let colEmail = headers.indexOf("Correo Envío Piloto (Prueba)");
+  if (colEmail === -1) {
+    colEmail = headers.indexOf("Correo Electrónico") !== -1 ? headers.indexOf("Correo Electrónico") : headers.indexOf("Correo");
+  }
+  const colVerif = headers.indexOf("Enlace Verificación QR") !== -1 ? headers.indexOf("Enlace Verificación QR") : headers.indexOf("Enlace Validación Web (QR)");
   const colPonencia = headers.indexOf("Ponencia Magistral Presentada");
   const colEje = headers.indexOf("Eje Temático");
   

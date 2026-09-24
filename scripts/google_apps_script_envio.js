@@ -109,7 +109,7 @@ function enviarPruebaErika() {
       nombre: "Erika Betancourt",
       email: "erbetancourt@utp.edu.co",
       rol: "PONENTE",
-      asunto: "Certificado Oficial de Ponente y Grabación - II Foro de Editores de Revistas Científicas 2026",
+      asunto: "Certificado Oficial de Ponente - II Foro de Editores de Revistas Científicas 2026",
       ponencia: "Presentación de la Revista Miradas",
       eje: "Socialización de Revistas Científicas",
       institucion: "Universidad Tecnológica de Pereira",
@@ -152,7 +152,7 @@ function enviarPruebaDosDestinatarios() {
       nombre: "Juan Esteban Nieto Valencia",
       email: "juan.nieto2@utp.edu.co",
       rol: "ASISTENTE",
-      asunto: "Certificado Oficial de Asistencia y Grabación - II Foro de Editores de Revistas Científicas 2026",
+      asunto: "Certificado Oficial de Asistencia - II Foro de Editores de Revistas Científicas 2026",
       tema: "Gestión editorial en tiempos de inteligencia artificial",
       urlVerificacion: "https://juannietoval.github.io/certificaci-n-II-foro/?id=FORO26-ASI-012"
     };
@@ -169,7 +169,7 @@ function enviarPruebaDosDestinatarios() {
       nombre: "Erika Betancourt",
       email: "erbetancourt@utp.edu.co",
       rol: "PONENTE",
-      asunto: "Certificado Oficial de Ponente y Grabación - II Foro de Editores de Revistas Científicas 2026",
+      asunto: "Certificado Oficial de Ponente - II Foro de Editores de Revistas Científicas 2026",
       ponencia: "Presentación de la Revista Miradas",
       eje: "Socialización de Revistas Científicas",
       institucion: "Universidad Tecnológica de Pereira",
@@ -285,8 +285,8 @@ function procesarHoja(nombreHoja, tipoRol) {
     }
 
     const asunto = (tipoRol === "PONENTE")
-      ? "Certificado Oficial de Ponente y Grabación - II Foro de Editores de Revistas Científicas 2026"
-      : "Certificado Oficial de Asistencia y Grabación - II Foro de Editores de Revistas Científicas 2026";
+      ? "Certificado Oficial de Ponente - II Foro de Editores de Revistas Científicas 2026"
+      : "Certificado Oficial de Asistencia - II Foro de Editores de Revistas Científicas 2026";
 
     const payload = {
       id: id,
@@ -318,7 +318,7 @@ function procesarHoja(nombreHoja, tipoRol) {
 // ================= CONSTRUCTOR Y ENVÍO DE CORREO =================
 function enviarCorreo(datos) {
   const esPonente = (datos.rol === "PONENTE");
-  const asunto = datos.asunto || "Certificado Oficial y Grabación - II Foro de Editores de Revistas Científicas 2026";
+  const asunto = datos.asunto || "Certificado Oficial - II Foro de Editores de Revistas Científicas 2026";
   const tratamiento = obtenerTratamiento(datos.nombre);
 
   let bloqueRol = "";
@@ -405,25 +405,14 @@ function enviarCorreo(datos) {
               </table>
             </div>
 
-            <p style="font-size: 15px; color: #334155; line-height: 1.6; margin: 0 0 16px 0;">
-              Asimismo, ponemos a su disposición el enlace oficial para consultar la <strong>grabación completa de la jornada académica</strong> en Microsoft Stream:
-            </p>
-
-            <!-- BOTÓN DE GRABACIÓN -->
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 4px; padding: 16px 18px; margin: 0 0 24px 0; text-align: center;">
-              <div style="font-size: 10.5px; font-weight: 700; color: #0b223d; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
-                MEMORIAS EN VIDEO • SESIÓN COMPLETA
+            <!-- NOTA DE SEGURIDAD Y VERIFICACIÓN -->
+            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 16px 18px; margin: 0 0 20px 0;">
+              <div style="font-size: 11px; font-weight: 700; color: #0b223d; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">
+                Verificación de Autenticidad Institucional
               </div>
-              <a href="${CONFIG.LINK_GRABACION}" target="_blank" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 11px 24px; font-size: 13.5px; font-weight: 600; border-radius: 3px;">
-                Acceder a la Grabación de la Reunión
-              </a>
-            </div>
-
-            <!-- NOTA DE SEGURIDAD -->
-            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 14px 18px; margin: 0 0 20px 0;">
-              <p style="margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.5;">
-                <strong>Verificación de autenticidad:</strong> Su certificado puede ser validado en cualquier momento escaneando el código QR incorporado en el documento o ingresando al enlace directo:<br>
-                <a href="${datos.urlVerificacion}" style="color: #0b223d; word-break: break-all;">${datos.urlVerificacion}</a>
+              <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+                Su certificación cuenta con validez académica permanente. Puede ser verificada en cualquier momento escaneando el código QR impreso en el documento o accediendo al registro digital oficial:<br>
+                <a href="${datos.urlVerificacion}" target="_blank" style="color: #0b223d; font-weight: 600; text-decoration: underline; word-break: break-all;">${datos.urlVerificacion}</a>
               </p>
             </div>
 

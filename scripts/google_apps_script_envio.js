@@ -39,12 +39,13 @@ function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu("Envío de Certificados")
     .addItem("1. Ejecutar PILOTO: Enviar 12 Ponentes a mi correo UTP", "enviarPilotoPonentes")
-    .addItem("2. Enviar prueba específica (Juan UTP y Erika Gmail)", "enviarPruebaDosDestinatarios")
+    .addItem("2. Enviar únicamente certificado de Erika a su correo UTP", "enviarPruebaErika")
+    .addItem("3. Enviar prueba dual (Juan UTP y Erika UTP)", "enviarPruebaDosDestinatarios")
     .addSeparator()
-    .addItem("3. Enviar a Ponentes (Correos reales pendientes)", "enviarPonentes")
-    .addItem("4. Enviar a Asistentes (Correos reales pendientes)", "enviarAsistentes")
+    .addItem("4. Enviar a Ponentes (Correos reales pendientes)", "enviarPonentes")
+    .addItem("5. Enviar a Asistentes (Correos reales pendientes)", "enviarAsistentes")
     .addSeparator()
-    .addItem("5. Enviar a TODOS los pendientes", "enviarTodos")
+    .addItem("6. Enviar a TODOS los pendientes", "enviarTodos")
     .addToUi();
 }
 
@@ -87,6 +88,46 @@ function obtenerTratamiento(nombre) {
   return "Estimado";
 }
 
+// ================= ENVÍO DE PRUEBA EXCLUSIVA PARA ERIKA =================
+function enviarPruebaErika() {
+  const ui = SpreadsheetApp.getUi();
+  const resp = ui.alert(
+    "Confirmación de Envío a Erika Betancourt",
+    "Se enviará únicamente el certificado oficial de Ponente a Erika Betancourt:\n\n" +
+    "Destinatario: erbetancourt@utp.edu.co\n" +
+    "Ponencia: Presentación de la Revista Miradas\n" +
+    "Adjunto: Certificado PDF Oficial\n\n" +
+    "¿Desea proceder con el envío?",
+    ui.ButtonSet.YES_NO
+  );
+
+  if (resp !== ui.Button.YES) return;
+
+  try {
+    const datosPonente = {
+      id: "FORO26-PON-006",
+      nombre: "Erika Betancourt",
+      email: "erbetancourt@utp.edu.co",
+      rol: "PONENTE",
+      asunto: "Certificado Oficial de Ponente y Grabación - II Foro de Editores de Revistas Científicas 2026",
+      ponencia: "Presentación de la Revista Miradas",
+      eje: "Socialización de Revistas Científicas",
+      institucion: "Universidad Tecnológica de Pereira",
+      urlVerificacion: "https://juannietoval.github.io/certificaci-n-II-foro/?id=FORO26-PON-006"
+    };
+    enviarCorreo(datosPonente);
+    ui.alert(
+      "Envío Exitoso",
+      "El certificado fue enviado exitosamente a Erika Betancourt:\n" +
+      "erbetancourt@utp.edu.co (Estimada Erika Betancourt)\n\n" +
+      "El archivo PDF oficial fue adjuntado correctamente.",
+      ui.ButtonSet.OK
+    );
+  } catch (e) {
+    ui.alert("Error en Envío", "No se pudo enviar el correo: " + e.message, ui.ButtonSet.OK);
+  }
+}
+
 // ================= ENVÍO DE PRUEBA A LOS 2 DESTINATARIOS =================
 function enviarPruebaDosDestinatarios() {
   const ui = SpreadsheetApp.getUi();
@@ -94,7 +135,7 @@ function enviarPruebaDosDestinatarios() {
     "Confirmación de Envío de Prueba",
     "Se enviarán 2 correos institucionales de prueba con el certificado PDF adjunto:\n\n" +
     "1. Asistente: juan.nieto2@utp.edu.co (Juan Esteban Nieto Valencia)\n" +
-    "2. Ponente: juanestebannietovalencia@gmail.com (Erika Betancourt)\n\n" +
+    "2. Ponente: erbetancourt@utp.edu.co (Erika Betancourt)\n\n" +
     "¿Desea proceder con el envío de prueba?",
     ui.ButtonSet.YES_NO
   );
@@ -126,7 +167,7 @@ function enviarPruebaDosDestinatarios() {
     const datosPonente = {
       id: "FORO26-PON-006",
       nombre: "Erika Betancourt",
-      email: "juanestebannietovalencia@gmail.com",
+      email: "erbetancourt@utp.edu.co",
       rol: "PONENTE",
       asunto: "Certificado Oficial de Ponente y Grabación - II Foro de Editores de Revistas Científicas 2026",
       ponencia: "Presentación de la Revista Miradas",
@@ -137,7 +178,7 @@ function enviarPruebaDosDestinatarios() {
     enviarCorreo(datosPonente);
     exitos++;
   } catch (e) {
-    errores.push("juanestebannietovalencia@gmail.com: " + e.message);
+    errores.push("erbetancourt@utp.edu.co: " + e.message);
   }
 
   if (errores.length === 0) {
@@ -145,7 +186,7 @@ function enviarPruebaDosDestinatarios() {
       "Prueba Completada",
       "Los dos correos fueron enviados exitosamente con su archivo PDF adjunto:\n\n" +
       "- juan.nieto2@utp.edu.co (Estimado Juan Esteban Nieto Valencia)\n" +
-      "- juanestebannietovalencia@gmail.com (Estimada Erika Betancourt)\n\n" +
+      "- erbetancourt@utp.edu.co (Estimada Erika Betancourt)\n\n" +
       "Por favor verifique las bandejas de entrada correspondientes.",
       ui.ButtonSet.OK
     );

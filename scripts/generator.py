@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 import json
 import html
 import subprocess
@@ -15,7 +16,7 @@ BASE_WEB_URL = "https://juannietoval.github.io/certificaci-n-II-foro"
 DEFAULT_EVENT_TITLE = "II FORO DE EDITORES DE REVISTAS CIENTÍFICAS"
 DEFAULT_EVENT_SUBTITLE = "Gestión editorial en tiempos de inteligencia artificial"
 DEFAULT_FECHA = "Viernes 11 de septiembre de 2026"
-DEFAULT_HORARIO = "8:00 a 12:00 m. (hora Colombia)"
+DEFAULT_HORARIO = "8:00 a. m. a 12:00 m. (hora Colombia)"
 DEFAULT_INTENSIDAD = "4 horas"
 DEFAULT_MODALIDAD = "Virtual"
 DEFAULT_CIUDAD = "Pereira, Colombia"
@@ -32,7 +33,7 @@ def format_doc(doc_str):
         return ""
     s = str(doc_str).strip()
     upper_s = s.upper()
-    prefixes = ("C.C.", "CC", "D.I.", "DI", "DNI", "PASAPORTE", "PAS.", "PAS", "C.E.", "CE")
+    prefixes = ("C.C.", "CC", "D.I.", "DI", "DNI", "PASAPORTE", "PAS.", "PAS", "C.E.", "CE", "C.I.", "CI", "INE", "DUI", "CURP", "CREDENCIAL")
     for pfx in prefixes:
         if upper_s.startswith(pfx):
             return s
@@ -41,20 +42,24 @@ def format_doc(doc_str):
         return f"C.C. {num:,}".replace(",", ".")
     return f"D.I. {s}"
 
-def title_case_ponencia(titulo):
-    """Convert ALL CAPS title to sentence case for readability."""
+def format_title_display(titulo):
+    """Preserve mixed-case acronyms; convert ALL-CAPS titles to sentence case."""
     if not titulo:
         return ""
-    # Convert to sentence case: first letter uppercase, rest lowercase
-    # But preserve uppercase after colon
-    parts = titulo.split(": ")
-    result = []
-    for i, part in enumerate(parts):
-        if i == 0:
+    if titulo.isupper():
+        parts = titulo.split(": ")
+        result = []
+        for i, part in enumerate(parts):
             result.append(part[0].upper() + part[1:].lower() if len(part) > 1 else part.upper())
-        else:
-            result.append(part[0].upper() + part[1:].lower() if len(part) > 1 else part.upper())
-    return ": ".join(result)
+        return ": ".join(result)
+    return titulo
+
+def safe_filename(name):
+    """Sanitize string for cross-platform safe filenames."""
+    # Replace spaces with underscores and remove problematic punctuation
+    s = re.sub(r'[\/\\:\*\?"<>\|]', '', name)
+    s = re.sub(r'\s+', '_', s.strip())
+    return s
 
 def generate_all():
     template_ponente_path = os.path.join(BASE, "templates", "master_template.html")
@@ -69,10 +74,12 @@ def generate_all():
     with open(data_path, "r", encoding="utf-8") as f:
         participantes = json.load(f)
 
+    web_certs = []
+
     for p in participantes:
         cert_id = p["id"]
         nombre = p["nombre"]
-        clean_name = nombre.replace(" ", "_")
+        clean_name = safe_filename(nombre)
         rol = p.get("rol", "PONENTE").upper()
         qr_url = f"{BASE_WEB_URL}/?id={cert_id}"
 
@@ -81,6 +88,9 @@ def generate_all():
         modalidad = p.get("modalidad", DEFAULT_MODALIDAD)
         ciudad = p.get("ciudad", DEFAULT_CIUDAD)
         institucion = p.get("institucion", DEFAULT_INSTITUCION)
+
+        pdf_rel = f"output/pdf/{cert_id}_{clean_name}.pdf"
+        preview_rel = f"output/preview/{cert_id}_preview.png"
 
         if rol == "ASISTENTE":
             cert_html = template_asistente
@@ -112,7 +122,7 @@ def generate_all():
             ciudad_disp = f"{ciudad} (Modalidad {modalidad})" if modalidad else ciudad
             location_date = f"{ciudad_disp} &mdash; {clean_val(fecha)}"
             titulo_raw = p.get("titulo", "")
-            titulo_display = title_case_ponencia(titulo_raw)
+            titulo_display = format_title_display(titulo_raw)
 
             cert_html = cert_html.replace("{{ID}}", cert_id)
             cert_html = cert_html.replace("{{NOMBRE}}", clean_val(nombre))
@@ -132,11 +142,13 @@ def generate_all():
             cert_html = cert_html.replace("{{COORDINACION}}", clean_val(p.get("coordinacion", "Comité Organizador")))
             cert_html = cert_html.replace("{{QR_URL}}", qr_url)
 
+        # Write HTML for individual cert
         html_file = os.path.abspath(os.path.join(BASE, "templates", f"{cert_id}.html"))
         with open(html_file, "w", encoding="utf-8") as f_out:
             f_out.write(cert_html)
 
-        pdf_file = os.path.abspath(os.path.join(BASE, "output", "pdf", f"{cert_id}_{clean_name}.pdf"))
+        # Generate PDF
+        pdf_file = os.path.abspath(os.path.join(BASE, pdf_rel))
         cmd_pdf = [
             BROWSER,
             "--headless",
@@ -147,7 +159,8 @@ def generate_all():
         ]
         subprocess.run(cmd_pdf, capture_output=True, text=True)
 
-        png_file = os.path.abspath(os.path.join(BASE, "output", "preview", f"{cert_id}_preview.png"))
+        # Generate PNG preview (150 DPI)
+        png_file = os.path.abspath(os.path.join(BASE, preview_rel))
         try:
             doc = pymupdf.open(pdf_file)
             page = doc[0]
@@ -157,7 +170,34 @@ def generate_all():
         except Exception as e:
             print(f"Warning: Could not render PDF preview with PyMuPDF: {e}")
 
-        print(f"Generated Vector Certificate & Exact Preview: {cert_id} - {nombre}")
+        # Record for index.html dataset
+        record = dict(p)
+        record["pdf"] = pdf_rel
+        record["preview"] = preview_rel
+        web_certs.append(record)
+
+        print(f"[OK] {cert_id} - {nombre} -> {pdf_rel}")
+
+    # Update index.html embedded dataset
+    update_index_html(web_certs)
+
+def update_index_html(web_certs):
+    index_path = os.path.join(BASE, "index.html")
+    if not os.path.exists(index_path):
+        return
+
+    with open(index_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    json_str = json.dumps(web_certs, ensure_ascii=False, indent=6)
+    pattern = r"const DEFAULT_CERTS = \[.*?\];"
+    replacement = f"const DEFAULT_CERTS = {json_str};"
+
+    new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(new_content)
+
+    print(f"Successfully updated index.html with {len(web_certs)} certificates!")
 
 if __name__ == "__main__":
     generate_all()

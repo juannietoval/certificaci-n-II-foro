@@ -1173,8 +1173,8 @@
       {
             "id": "FORO26-ASI-010",
             "nombre": "Carlos Javier Lizcano Chapeta",
-            "cedula": "C.C. 1.759.650.623",
-            "tipo_doc": "Cédula residente de Ecuador",
+            "cedula": "C.I. 1759650623",
+            "tipo_doc": "Cédula de residente de Ecuador",
             "doc_raw": "1759650623",
             "rol": "ASISTENTE",
             "tema_central": "Gestión editorial en tiempos de inteligencia artificial",
@@ -1908,7 +1908,7 @@
       {
             "id": "FORO26-ASI-045",
             "nombre": "Fátima Mayerli Fuentes",
-            "cedula": "C.C. 69.095.119",
+            "cedula": "DUI 06909511-9",
             "tipo_doc": "DUI",
             "doc_raw": "069095119",
             "rol": "ASISTENTE",
@@ -2202,9 +2202,9 @@
       {
             "id": "FORO26-ASI-059",
             "nombre": "Itzel Miranda López",
-            "cedula": "INE 21569108",
+            "cedula": "INE 2156919108",
             "tipo_doc": "INE",
-            "doc_raw": "21569108",
+            "doc_raw": "2156919108",
             "rol": "ASISTENTE",
             "tema_central": "Gestión editorial en tiempos de inteligencia artificial",
             "intensidad": "4 horas",
@@ -2349,8 +2349,8 @@
       {
             "id": "FORO26-ASI-066",
             "nombre": "Bertha Jacqueline Contla Ramírez",
-            "cedula": "C.C. 69.010.511.866",
-            "tipo_doc": "Credencial para Votar",
+            "cedula": "INE 0069010511866",
+            "tipo_doc": "Credencial para Votar (INE)",
             "doc_raw": "0069010511866",
             "rol": "ASISTENTE",
             "tema_central": "Gestión editorial en tiempos de inteligencia artificial",
@@ -2769,8 +2769,8 @@
       {
             "id": "FORO26-ASI-086",
             "nombre": "Alaín García Peñaloza",
-            "cedula": "C.I. GRPLAL84090315H000",
-            "tipo_doc": "Tarjeta de Identidad (T.I.)",
+            "cedula": "CURP GRPLAL84090315H000",
+            "tipo_doc": "CURP",
             "doc_raw": "GRPLAL84090315H000",
             "rol": "ASISTENTE",
             "tema_central": "Gestión editorial en tiempos de inteligencia artificial",
@@ -2895,7 +2895,7 @@
       {
             "id": "FORO26-ASI-092",
             "nombre": "Daniel Neftali Ramirez Salazar",
-            "cedula": "C.C. 7.073.842",
+            "cedula": "DUI 00707384-2",
             "tipo_doc": "DUI",
             "doc_raw": "007073842",
             "rol": "ASISTENTE",
@@ -2937,7 +2937,7 @@
       {
             "id": "FORO26-ASI-094",
             "nombre": "Napoleón Ernesto López Espinoza",
-            "cedula": "C.C. 13.435.337",
+            "cedula": "DUI 01343533-7",
             "tipo_doc": "DUI",
             "doc_raw": "013435337",
             "rol": "ASISTENTE",
@@ -2958,7 +2958,7 @@
       {
             "id": "FORO26-ASI-095",
             "nombre": "Ligia Marcela Lazo Majano",
-            "cedula": "C.I. 012672740",
+            "cedula": "DUI 01267274-0",
             "tipo_doc": "Documento Unico de Identidad (DUI)",
             "doc_raw": "012672740",
             "rol": "ASISTENTE",
@@ -2979,7 +2979,7 @@
       {
             "id": "FORO26-ASI-096",
             "nombre": "Mariela Vanessa Meléndez Ascencio",
-            "cedula": "C.I. 023003792",
+            "cedula": "DUI 02300379-2",
             "tipo_doc": "Documento Único de Identidad (DUI)",
             "doc_raw": "023003792",
             "rol": "ASISTENTE",
@@ -3105,8 +3105,8 @@
       {
             "id": "FORO26-ASI-102",
             "nombre": "María del Rosario Rodríguez León",
-            "cedula": "C.C. 826.091",
-            "tipo_doc": "credencial institucionla",
+            "cedula": "Credencial UNAM 826091",
+            "tipo_doc": "Credencial Institucional UNAM",
             "doc_raw": "826091",
             "rol": "ASISTENTE",
             "tema_central": "Gestión editorial en tiempos de inteligencia artificial",
@@ -3189,7 +3189,7 @@
       const pdfUrl = cert.pdf || `output/pdf/${cert.id}_${cert.nombre.replace(/\s+/g, '_')}.pdf`;
       const previewUrl = cert.preview || `output/preview/${cert.id}_preview.png`;
       const isAsistente = (cert.rol || '').toUpperCase() === 'ASISTENTE';
-      const docFormatted = cert.cedula ? (`C.C. ${Number(cert.cedula).toLocaleString('es-CO')}`) : '';
+      const docFormatted = (cert.cedula && String(cert.cedula).trim() !== '') ? String(cert.cedula).trim() : '';
 
       let roleSpecificBoxes = '';
       if (!isAsistente && cert.titulo) {

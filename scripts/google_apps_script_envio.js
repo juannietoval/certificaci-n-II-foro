@@ -481,8 +481,7 @@ function enviarCorreo(datos) {
   const plainText = `${tratamiento} ${datos.nombre}:\n\n` +
     `Adjunto a este correo encontrará su certificado oficial en formato PDF para el II Foro de Editores de Revistas Científicas 2026.\n\n` +
     `Código de verificación: ${datos.id}\n` +
-    `Verificación en portal web: ${datos.urlVerificacion}\n` +
-    `Grabación oficial de la reunión: ${CONFIG.LINK_GRABACION}\n\n` +
+    `Verificación en portal web: ${datos.urlVerificacion}\n\n` +
     `Atentamente,\nCOMITÉ ORGANIZADOR\nCoordinación General del Evento\nUNIMINUTO • IBERO • UTP`;
 
   const emailOptions = {
@@ -492,23 +491,24 @@ function enviarCorreo(datos) {
   };
 
   // Obtener y adjuntar el archivo PDF automáticamente
-  try {
-    const cleanName = datos.nombre.replace(/[\/\\:\*\?"<>\|]/g, '').trim().replace(/\s+/g, '_');
-    const remotePdfUrl = CONFIG.BASE_PDF_URL + encodeURIComponent(datos.id + "_" + cleanName + ".pdf");
-    
-    const resp = UrlFetchApp.fetch(remotePdfUrl, { muteHttpExceptions: true });
-    if (resp.getResponseCode() === 200) {
-      const pdfBlob = resp.getBlob().setName(`certificado - ${datos.nombre}.pdf`);
-      emailOptions.attachments.push(pdfBlob);
-    } else if (CONFIG.ID_CARPETA_DRIVE) {
-      const carpeta = DriveApp.getFolderById(CONFIG.ID_CARPETA_DRIVE);
-      const archivos = carpeta.getFilesByName(`certificado - ${datos.nombre}.pdf`);
-      if (archivos.hasNext()) {
-        emailOptions.attachments.push(archivos.next().getAs(MimeType.PDF));
-      }
+  const cleanName = datos.nombre.replace(/[\/\\:\*\?"<>\|]/g, '').trim().replace(/\s+/g, '_');
+  const remotePdfUrl = CONFIG.BASE_PDF_URL + encodeURIComponent(datos.id + "_" + cleanName + ".pdf");
+  
+  const resp = UrlFetchApp.fetch(remotePdfUrl, { muteHttpExceptions: true });
+  if (resp.getResponseCode() === 200) {
+    const pdfBlob = resp.getBlob().setName(`certificado - ${datos.nombre}.pdf`);
+    emailOptions.attachments.push(pdfBlob);
+  } else if (CONFIG.ID_CARPETA_DRIVE) {
+    const carpeta = DriveApp.getFolderById(CONFIG.ID_CARPETA_DRIVE);
+    const archivos = carpeta.getFilesByName(`certificado - ${datos.nombre}.pdf`);
+    if (archivos.hasNext()) {
+      emailOptions.attachments.push(archivos.next().getAs(MimeType.PDF));
     }
-  } catch (e) {
-    Logger.log("Aviso en adjunto de PDF: " + e.message);
+  }
+
+  // Garantía estricta de seguridad: Jamás enviar correo sin el PDF adjunto
+  if (emailOptions.attachments.length === 0) {
+    throw new Error("No se pudo obtener el PDF adjunto para " + datos.id + " (HTTP " + resp.getResponseCode() + ")");
   }
 
   GmailApp.sendEmail(datos.email, asunto, plainText, emailOptions);

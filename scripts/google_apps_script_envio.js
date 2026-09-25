@@ -28,6 +28,7 @@ const CONFIG = {
   ID_CARPETA_DRIVE: "",
   
   // Nombres de las hojas
+  HOJA_ENVIO_ASISTENTES: "Envio_Asistentes",
   HOJA_PILOTO: "Piloto_Ponentes",
   HOJA_PRUEBA: "Prueba_Envio",
   HOJA_ASISTENTES: "Asistentes",
@@ -208,7 +209,10 @@ function enviarPonentesDefinitivo() {
 }
 
 function enviarAsistentes() {
-  procesarHoja(CONFIG.HOJA_ASISTENTES, "ASISTENTE", false);
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheetEnvio = ss.getSheetByName(CONFIG.HOJA_ENVIO_ASISTENTES || "Envio_Asistentes");
+  const nombreHoja = sheetEnvio ? (CONFIG.HOJA_ENVIO_ASISTENTES || "Envio_Asistentes") : CONFIG.HOJA_ASISTENTES;
+  procesarHoja(nombreHoja, "ASISTENTE", false);
 }
 
 function enviarTodos() {
@@ -234,7 +238,10 @@ function procesarHoja(nombreHoja, tipoRol, modoRevision) {
 
   const headers = data[0];
   const colId = headers.indexOf("Código Certificado");
-  const colNombre = headers.indexOf("Nombre Completo") !== -1 ? headers.indexOf("Nombre Completo") : headers.indexOf("Nombre Ponente");
+  
+  let colNombre = headers.indexOf("Nombre Completo");
+  if (colNombre === -1) colNombre = headers.indexOf("Nombre Asistente");
+  if (colNombre === -1) colNombre = headers.indexOf("Nombre Ponente");
   
   let colEmail = -1;
   if (modoRevision === true) {
@@ -252,6 +259,7 @@ function procesarHoja(nombreHoja, tipoRol, modoRevision) {
   const colVerif = headers.indexOf("Enlace Verificación QR") !== -1 ? headers.indexOf("Enlace Verificación QR") : headers.indexOf("Enlace Validación Web (QR)");
   const colPonencia = headers.indexOf("Ponencia Magistral Presentada");
   const colEje = headers.indexOf("Eje Temático");
+  const colFechaHora = headers.indexOf("Fecha y Hora Envío");
   
   let colEstado = headers.indexOf("Estado Envío");
   if (colEstado === -1) {
@@ -269,13 +277,16 @@ function procesarHoja(nombreHoja, tipoRol, modoRevision) {
   }
 
   if (pendientes === 0) {
-    ui.alert("Todos los correos de '" + nombreHoja + "' ya están registrados como enviados.");
+    ui.alert("Todos los correos válidos de '" + nombreHoja + "' ya están registrados como enviados.");
     return;
   }
 
+  const quotaRestante = MailApp.getRemainingDailyQuota();
   const confirmacion = ui.alert(
     "Confirmación de Envío - " + nombreHoja,
-    "Se enviarán " + pendientes + " correos institucionales con certificado PDF adjunto en '" + nombreHoja + "'.\n\n¿Desea iniciar el proceso?",
+    "Registros pendientes por enviar: " + pendientes + "\n" +
+    "Cupo diario disponible en su cuenta de Google hoy: " + quotaRestante + " correos.\n\n" +
+    "¿Desea iniciar el proceso de envío con certificado PDF adjunto?",
     ui.ButtonSet.YES_NO
   );
   if (confirmacion !== ui.Button.YES) return;
@@ -314,18 +325,24 @@ function procesarHoja(nombreHoja, tipoRol, modoRevision) {
 
     try {
       enviarCorreo(payload);
-      const timestamp = Utilities.formatDate(new Date(), "GMT-5", "yyyy-MM-dd HH:mm");
-      sheet.getRange(i + 1, colEstado + 1).setValue("ENVIADO (" + timestamp + ")").setFontColor("#059669");
+      const timestamp = Utilities.formatDate(new Date(), "GMT-5", "yyyy-MM-dd HH:mm:ss");
+      
+      if (colFechaHora !== -1) {
+        sheet.getRange(i + 1, colEstado + 1).setValue("ENVIADO").setFontColor("#059669");
+        sheet.getRange(i + 1, colFechaHora + 1).setValue(timestamp);
+      } else {
+        sheet.getRange(i + 1, colEstado + 1).setValue("ENVIADO (" + timestamp + ")").setFontColor("#059669");
+      }
       enviados++;
     } catch (e) {
       sheet.getRange(i + 1, colEstado + 1).setValue("ERROR: " + e.message).setFontColor("#dc2626");
       errores++;
     }
 
-    Utilities.sleep(300);
+    Utilities.sleep(350);
   }
 
-  ui.alert("Proceso Finalizado", "Enviados: " + enviados + "\nErrores: " + errores, ui.ButtonSet.OK);
+  ui.alert("Proceso Finalizado", "Enviados exitosamente: " + enviados + "\nErrores detectados: " + errores, ui.ButtonSet.OK);
 }
 
 // ================= CONSTRUCTOR Y ENVÍO DE CORREO =================

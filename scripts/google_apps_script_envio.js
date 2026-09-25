@@ -47,7 +47,38 @@ function onOpen() {
     .addItem("4. Enviar a Asistentes (Correos reales pendientes)", "enviarAsistentes")
     .addSeparator()
     .addItem("5. Enviar a TODOS los pendientes (Ponentes + Asistentes)", "enviarTodos")
+    .addSeparator()
+    .addItem("6. Limpiar / Reiniciar estados de envío en esta hoja", "limpiarEstadosEnvioActual")
     .addToUi();
+}
+
+function limpiarEstadosEnvioActual() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getActiveSheet();
+  const ui = SpreadsheetApp.getUi();
+  const confirm = ui.alert(
+    "Reiniciar Estados de Envío",
+    "¿Está seguro de que desea limpiar la columna de 'Estado Envío' en la hoja actual ('" + sheet.getName() + "')?\n\n" +
+    "Esto permitirá volver a enviar los correos que aparezcan marcados.",
+    ui.ButtonSet.YES_NO
+  );
+  if (confirm !== ui.Button.YES) return;
+
+  const data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return;
+  const headers = data[0];
+  let colEstado = headers.indexOf("Estado Envío");
+  if (colEstado === -1) colEstado = headers.indexOf("Estado Envío Real");
+  if (colEstado === -1) colEstado = headers.indexOf("Estado Envío Piloto");
+
+  if (colEstado !== -1) {
+    for (let i = 1; i < data.length; i++) {
+      sheet.getRange(i + 1, colEstado + 1).setValue("");
+    }
+    ui.alert("Columna de estado reiniciada exitosamente en '" + sheet.getName() + "'.");
+  } else {
+    ui.alert("No se encontró ninguna columna de Estado en esta hoja.");
+  }
 }
 
 // ================= DETECCIÓN DE GÉNERO (ESTIMADO / ESTIMADA) =================
@@ -261,10 +292,21 @@ function procesarHoja(nombreHoja, tipoRol, modoRevision) {
   const colEje = headers.indexOf("Eje Temático");
   const colFechaHora = headers.indexOf("Fecha y Hora Envío");
   
-  let colEstado = headers.indexOf("Estado Envío");
+  let colEstado = -1;
+  if (modoRevision === true) {
+    colEstado = headers.indexOf("Estado Envío Piloto");
+    if (colEstado === -1) colEstado = headers.indexOf("Estado Prueba");
+    if (colEstado === -1) {
+      colEstado = headers.indexOf("Estado Envío");
+    }
+  } else {
+    colEstado = headers.indexOf("Estado Envío Real");
+    if (colEstado === -1) colEstado = headers.indexOf("Estado Envío");
+  }
+  
   if (colEstado === -1) {
     colEstado = headers.length;
-    sheet.getRange(1, colEstado + 1).setValue("Estado Envío").setFontWeight("bold");
+    sheet.getRange(1, colEstado + 1).setValue(modoRevision ? "Estado Envío Piloto" : "Estado Envío").setFontWeight("bold");
   }
 
   let pendientes = 0;
@@ -273,6 +315,25 @@ function procesarHoja(nombreHoja, tipoRol, modoRevision) {
     const email = colEmail !== -1 ? data[i][colEmail] : "";
     if (!estado.toString().startsWith("ENVIADO") && email && email.toString().includes("@")) {
       pendientes++;
+    }
+  }
+
+  // Si no hay pendientes pero estamos en modo definitivo y la columna tiene registros de la prueba anterior
+  if (pendientes === 0 && modoRevision === false) {
+    const limpiarConfirm = ui.alert(
+      "Estados Previos Detectados",
+      "La columna de Estado en '" + nombreHoja + "' ya tiene marcas de envío (posiblemente de la prueba a su correo).\n\n" +
+      "¿Desea limpiar los estados de esta hoja para ENVIAR AHORA a los CORREOS REALES de los Ponentes?",
+      ui.ButtonSet.YES_NO
+    );
+    if (limpiarConfirm === ui.Button.YES) {
+      for (let i = 1; i < data.length; i++) {
+        sheet.getRange(i + 1, colEstado + 1).setValue("");
+      }
+      ui.alert("Estados limpiados. Por favor vuelva a seleccionar la opción '2. [DEFINITIVO] Enviar a los Ponentes a sus CORREOS REALES'.");
+      return;
+    } else {
+      return;
     }
   }
 

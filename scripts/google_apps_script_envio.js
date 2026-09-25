@@ -38,14 +38,14 @@ const CONFIG = {
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu("Envío de Certificados")
-    .addItem("1. Ejecutar PILOTO: Enviar 12 Ponentes a mi correo UTP", "enviarPilotoPonentes")
-    .addItem("2. Enviar únicamente certificado de Erika a su correo UTP", "enviarPruebaErika")
-    .addItem("3. Enviar prueba dual (Juan UTP y Erika UTP)", "enviarPruebaDosDestinatarios")
+    .addItem("1. [REVISIÓN] Enviar los 13 Ponentes a mi correo UTP", "enviarPonentesRevision")
+    .addItem("2. [DEFINITIVO] Enviar a los Ponentes a sus CORREOS REALES", "enviarPonentesDefinitivo")
     .addSeparator()
-    .addItem("4. Enviar a Ponentes (Correos reales pendientes)", "enviarPonentes")
-    .addItem("5. Enviar a Asistentes (Correos reales pendientes)", "enviarAsistentes")
+    .addItem("3. Enviar únicamente certificado de Erika a su correo UTP", "enviarPruebaErika")
     .addSeparator()
-    .addItem("6. Enviar a TODOS los pendientes", "enviarTodos")
+    .addItem("4. Enviar a Asistentes (Correos reales pendientes)", "enviarAsistentes")
+    .addSeparator()
+    .addItem("5. Enviar a TODOS los pendientes (Ponentes + Asistentes)", "enviarTodos")
     .addToUi();
 }
 
@@ -196,24 +196,27 @@ function enviarPruebaDosDestinatarios() {
 }
 
 // ================= ENVÍOS MASIVOS Y PILOTO POR PESTAÑAS =================
-function enviarPilotoPonentes() {
-  procesarHoja(CONFIG.HOJA_PILOTO || "Piloto_Ponentes", "PONENTE");
+function enviarPonentesRevision() {
+  procesarHoja(CONFIG.HOJA_PILOTO || "Piloto_Ponentes", "PONENTE", true);
+}
+
+function enviarPonentesDefinitivo() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheetPiloto = ss.getSheetByName(CONFIG.HOJA_PILOTO || "Piloto_Ponentes");
+  const nombreHoja = sheetPiloto ? (CONFIG.HOJA_PILOTO || "Piloto_Ponentes") : CONFIG.HOJA_PONENTES;
+  procesarHoja(nombreHoja, "PONENTE", false);
 }
 
 function enviarAsistentes() {
-  procesarHoja(CONFIG.HOJA_ASISTENTES, "ASISTENTE");
-}
-
-function enviarPonentes() {
-  procesarHoja(CONFIG.HOJA_PONENTES, "PONENTE");
+  procesarHoja(CONFIG.HOJA_ASISTENTES, "ASISTENTE", false);
 }
 
 function enviarTodos() {
-  procesarHoja(CONFIG.HOJA_PONENTES, "PONENTE");
-  procesarHoja(CONFIG.HOJA_ASISTENTES, "ASISTENTE");
+  enviarPonentesDefinitivo();
+  enviarAsistentes();
 }
 
-function procesarHoja(nombreHoja, tipoRol) {
+function procesarHoja(nombreHoja, tipoRol, modoRevision) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(nombreHoja);
   const ui = SpreadsheetApp.getUi();
@@ -232,10 +235,20 @@ function procesarHoja(nombreHoja, tipoRol) {
   const headers = data[0];
   const colId = headers.indexOf("Código Certificado");
   const colNombre = headers.indexOf("Nombre Completo") !== -1 ? headers.indexOf("Nombre Completo") : headers.indexOf("Nombre Ponente");
-  let colEmail = headers.indexOf("Correo Envío Piloto (Prueba)");
-  if (colEmail === -1) {
+  
+  let colEmail = -1;
+  if (modoRevision === true) {
+    colEmail = headers.indexOf("Correo Envío Piloto (Prueba)");
+    if (colEmail === -1) colEmail = headers.indexOf("Correo Electrónico");
+  } else if (modoRevision === false) {
+    colEmail = headers.indexOf("Correo Real del Ponente");
+    if (colEmail === -1) {
+      colEmail = headers.indexOf("Correo Electrónico") !== -1 ? headers.indexOf("Correo Electrónico") : headers.indexOf("Correo");
+    }
+  } else {
     colEmail = headers.indexOf("Correo Electrónico") !== -1 ? headers.indexOf("Correo Electrónico") : headers.indexOf("Correo");
   }
+  
   const colVerif = headers.indexOf("Enlace Verificación QR") !== -1 ? headers.indexOf("Enlace Verificación QR") : headers.indexOf("Enlace Validación Web (QR)");
   const colPonencia = headers.indexOf("Ponencia Magistral Presentada");
   const colEje = headers.indexOf("Eje Temático");

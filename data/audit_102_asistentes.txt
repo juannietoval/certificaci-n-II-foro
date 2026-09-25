@@ -1,0 +1,102 @@
+  1. FORO26-ASI-001 | Cristian Yasser Martínez Rodríguez | Doc: C.C. 1.014.246.761 | Universidad de Los Andes, Colombia | Colômbia, Bogotá
+  2. FORO26-ASI-002 | Ana Milena Machado Manco | Doc: C.C. 1.128.462.070 | Sistema de Revistas, Universidad de Antioquia. | Colombia, Medellín
+  3. FORO26-ASI-003 | Lady Leandra Sánchez Jácome | Doc: C.C. 1.091.671.686 | Universidad Francisco de Paula Santander Seccional Ocaña | Colombia - Ocaña, Norte de Santander
+  4. FORO26-ASI-004 | Verónica Dominguez | Doc: DNI 20349404 | Universidad Austral - Argentina | Argentina, Buenos Aires
+  5. FORO26-ASI-005 | Carolina Olivares Chavez | Doc: D.I. OICC731104MDFLHR02 | UNAM | México, Ciudad de México
+  6. FORO26-ASI-006 | María Alejandra Lasso Rodríguez | Doc: DNI 37448774 | Universidad de la República | Montevideo, Uruguay
+  7. FORO26-ASI-007 | Julia Andrés | Doc: C.I. 18407472 | Facultad de Veterinaria, Universidad de la República | Uruguay, Montevideo
+  8. FORO26-ASI-008 | Pablo Andrés Martines Pineda | Doc: C.C. 1.044.433.208 | Corporación Universitaria Adventista | Colombia, Medellín
+  9. FORO26-ASI-009 | Eduardo Menjívar Valencia | Doc: Pasaporte C03836076 | Universidad Don Bosco | El Salvador, San Salvador
+ 10. FORO26-ASI-010 | Carlos Javier Lizcano Chapeta | Doc: C.C. 1.759.650.623 | Universidad Regional Autónoma de los Andes (UNIANDES-Ecuador) | Ibarra-Ecuador
+ 11. FORO26-ASI-011 | Liseth Paola Claro Ascanio | Doc: C.C. 1.091.676.806 | Universidad Francisco de PAula Santander Ocaña | Colombia
+ 12. FORO26-ASI-012 | Juan Esteban Nieto Valencia | Doc: C.C. 1.089.602.237 | UTP | Colombia Pereira
+ 13. FORO26-ASI-013 | María del Rosario Tolentino Ferrel | Doc: INE 2750204956 | Universidad de Guanajuato | México, Celaya
+ 14. FORO26-ASI-014 | Melissa Arria | Doc: C.I. 12404080 | Instituto Nacional de Higiene Rafael Rangel | Venezuela, Caracas
+ 15. FORO26-ASI-015 | Francisco Rosendo Olivares | Doc: INE IDMEX2460819077<< | Universidad Nacional Rosario Castellanos | México, ciudad de México
+ 16. FORO26-ASI-016 | María Ester González | Doc: DNI 21806612 | Universidad de Concepción - Instituto Panamericano de Geografía e Historia | Chile, Concepción
+ 17. FORO26-ASI-017 | Dahiana Priscila Jiménez Picado | Doc: C.I. 206970098 | Universidad de Costa Rica | San José, Costa Rica
+ 18. FORO26-ASI-018 | Lina María Perilla Rodríguez | Doc: C.C. 52.908.679 | Universidad Nacional de Colombia | Colombia, Bogotá
+ 19. FORO26-ASI-019 | Celina Hernández Armenta | Doc: INE idmex2233546788 | Universidad Nacional Autónoma de México | México, Ciudad de México
+ 20. FORO26-ASI-020 | Milaísle Torres Pulido | Doc: C.I. 13724504 | Universidad Nacional Experimental Francisco de Miranda | Santa Ana de Coro, Venezuela
+ 21. FORO26-ASI-021 | Maria De Los Angeles Loera López | Doc: INE IDMEX2551221431 | UANL | Monterrey, N. L., México
+ 22. FORO26-ASI-022 | Ana Yesenia García Guevara | Doc: DNI 2517525470 | Universidad Autónoma de Nuevo León | Nuevo León, México
+ 23. FORO26-ASI-023 | Cinthya Paola Gutiérrez Resendez | Doc: INE 2559687758 | Universidad Autónoma de Nuevo León | México, Cadereyta Jiménez
+ 24. FORO26-ASI-024 | Oscar Omar Chavez Molina | Doc: DNI 0930177720 | Hospital Dr Roberto Gilbert Elizalde | Ecuador/ Guayaquil
+ 25. FORO26-ASI-025 | Rubén Caro Sánchez | Doc: C.C. 1.128.476.692 | Universidad de Antioquia | Colombia, Medellín
+ 26. FORO26-ASI-026 | Alexandre Texeira Bondelas | Doc: DNI 60605191F | Universidade de Santiago de Compostela | España, Galicia
+ 27. FORO26-ASI-027 | Ximena Garcia Ocampo | Doc: C.C. 30.391.294 | Universidad de Manizales | Colombia Manizales
+ 28. FORO26-ASI-028 | Rafael David Córdova Lazo | Doc: DNI 72532051 | Universidad Ricardo Palma | Perú, Lima
+ 29. FORO26-ASI-029 | Camilo Corchuelo | Doc: C.C. 80.115.076 | AUDITORIA GENERAL DE LA REPÚBLICA | BOGOTÁ/COLOMBIA
+ 30. FORO26-ASI-030 | Enrique Blancarte Fuentes | Doc: INE 2523428884 | Docente/investigador | México/Guanajuato
+ 31. FORO26-ASI-031 | Paulina Pereda Gutiérrez | Doc: Pasaporte G28407542 | Universidad Autónoma de Querétaro | México, Querétaro
+ 32. FORO26-ASI-032 | Leandro Ceballos Henao | Doc: C.C. 1.039.447.159 | Corporación Universitaria Minuto de Dios UNIMINUTO | Medellín Colombia
+ 33. FORO26-ASI-033 | Edgar Zapata Vívenes | Doc: DNI 0963250295 | Universidad Técnica de Manabí | Ecuador, Bahía de Caráquez
+ 34. FORO26-ASI-034 | Karla Mavel Bolo Romero | Doc: DNI 10627224 | Universidad Femenina del Sagrado Corazón | Perú - Lima
+ 35. FORO26-ASI-035 | Sheyla Verónica Calderón de Rodríguez | Doc: C.E. 04-147-1857 | Universidad Autónoma de Chiriquí. | Panamá
+ 36. FORO26-ASI-036 | Nancy Isela Lopez Rodriguez | Doc: DNI 41984068 | Universidad Nacional de Trujillo | Perú / Trujillo
+ 37. FORO26-ASI-037 | Margarita Velasco Jiménez | Doc: DNI 50092398P | Revista Vivat Academia | Madrid, España
+ 38. FORO26-ASI-038 | Leidy Marcela Osorio Manco | Doc: C.C. 1.128.281.084 | Universidad de Antioquia | Colombia - Medellín
+ 39. FORO26-ASI-039 | María Guadalupe Rodríguez Oliva | Doc: C.E. Roog741210 | Universidad Autónoma de San Luis Potosi | México
+ 40. FORO26-ASI-040 | Corina Echavarría | Doc: DNI 22224881 | Editora Revista Administración Pública y Sociedad, Instituto de Investigación y Formación en Administración Pública. Universidad Nacional de Córdoba. | Córdoba, Argentina
+ 41. FORO26-ASI-041 | Analía Pérez Ruchel | Doc: DNI 40386523 | Facultad de Veterinaria - UDELAR | Uruguay, Montevideo
+ 42. FORO26-ASI-042 | Camila José Vásquez Avila | Doc: C.E. 0301988994 | Universidad Católica de Cuenca | Cuenca, Ecuador
+ 43. FORO26-ASI-043 | Moncerrath Arenas | Doc: INE ARRYAL8602289M700 | Ceu | México
+ 44. FORO26-ASI-044 | Julian Díaz | Doc: C.C. 15.992.162 | Universidad Bicentenaria de Aragua | Venezuela, Maracay
+ 45. FORO26-ASI-045 | Fátima Mayerli Fuentes | Doc: C.C. 69.095.119 | Instituto Nacional de Puerto El Triunfo | El Salvador, Puerto El Triunfo
+ 46. FORO26-ASI-046 | Jorgelina Passo | Doc: DNI 26618542 | Universidad de Buenos Aires | Argentina, Buenos Aires
+ 47. FORO26-ASI-047 | Dorelys Domenyca Morales Chirinos | Doc: C.E. 13107853 | UPEL | Venezuela
+ 48. FORO26-ASI-048 | Doris Cristina Vanegas González | Doc: C.C. 1.037.640.322 | Fundación Universitaria Colombo Internacional - Unicolombo | Cartagena de Indias, Colombia
+ 49. FORO26-ASI-049 | Fabiola Núñez Pastrana | Doc: INE NZPSFB77062609M000 | Universidad Michoacana de San Nicolás de Hidalgo | México, Morelia
+ 50. FORO26-ASI-050 | Rodolfo Bolaños | Doc: C.C. 94.524.701 | Corporación Universitaria Minuto de Dios | Colombia - Cali
+ 51. FORO26-ASI-051 | María de la Luz Escamilla Moya | Doc: D.I. EAML670512MDFSYZ03 | Instituto de Ciencias Nucleares,UNAM | México, Ciudad de México
+ 52. FORO26-ASI-052 | Mayra Itzel Huerta Baltazar | Doc: DNI 2603903584 | Universidad Michoacana de San Nicolás de Hidalgo | Morelia, Michoacán
+ 53. FORO26-ASI-053 | Belkis Elizabeth Osorio Acosta | Doc: C.E. 60367544L | Corporación Politécnico del Norte-POLINORTE | Colombia-Sincelejo
+ 54. FORO26-ASI-054 | Katty Cordero Fuentes | Doc: DNI 111340258 | Universidad de Costa Rica | Costa Rica
+ 55. FORO26-ASI-055 | Dr. Juan Carlos Abreu y Abreu | Doc: Pasaporte N00465298 | Universidad Anáhuac México | Huixquilucan, Estado de México. México
+ 56. FORO26-ASI-056 | Eva Luna Contreras | Doc: C.C. 1.140.886.894 | Corporación Universitaria Americana | Colombia / Barranquilla
+ 57. FORO26-ASI-057 | Darlington Smith Galvan Añez | Doc: C.C. 1.004.805.265 | Universidad Francisco de Paula Santander | Colombia - Cúcuta
+ 58. FORO26-ASI-058 | Alán Armando Cortés López | Doc: INE 2035068950939 | Dirección de Educación Normal | Xalapa, Veracruz, México
+ 59. FORO26-ASI-059 | Itzel Miranda López | Doc: INE 21569108 | Universidad Autónoma de Occidente | México Culiacán
+ 60. FORO26-ASI-060 | Diana Fiorela Sanchez Velazco | Doc: DNI 73044736 | Revista del Hospital Nacional Almanzor Aguinaga Asenjo | Perú, Lima
+ 61. FORO26-ASI-061 | Frank Isaac Berrocal Aréstegui | Doc: DNI 42531679 | Universidad Nacional de San Cristóbal de Huamanga | Perú, Ayacucho
+ 62. FORO26-ASI-062 | Ricardo Aram Del Castillo Torres | Doc: INE 1690573856 | UANL | México, Monterrey
+ 63. FORO26-ASI-063 | Verónica Rivera de la Rosa | Doc: Pasaporte N10138128 | Universidad Autónoma de Nuevo León | Monterrey, México
+ 64. FORO26-ASI-064 | Pablo García González | Doc: INE GRGNPB77121619H400 | Universidad Autónoma de Nuevo León | México, Monterrey
+ 65. FORO26-ASI-065 | Andrea Wilches Torres | Doc: C.C. 40.046.426 | Universidad de Boyacá | Colombia, Tunja (Boyacá)
+ 66. FORO26-ASI-066 | Bertha Jacqueline Contla Ramírez | Doc: C.C. 69.010.511.866 | Universidad de Colima | México, Colima
+ 67. FORO26-ASI-067 | José Luis Aguilar Martínez | Doc: Pasaporte N29874207 | Universidad Autónoma de Guerrero | México, estado de Guerrero, Chilpancingo
+ 68. FORO26-ASI-068 | Giovana Iris Hurtado Magán | Doc: DNI 09646377 | Universidad ESAN | Lima, Perú
+ 69. FORO26-ASI-069 | Montserrat García Guerrero | Doc: Pasaporte G1324752 | Universidad Autónoma de Zacatecas | Zacatecas Zacatecas
+ 70. FORO26-ASI-070 | Ana Francisca Gonzalez Pedraza | Doc: C.C. 1.127.654.910 | Universidad de Pamplona | Colombia, Pamplona
+ 71. FORO26-ASI-071 | Antonia Sampaio | Doc: C.E. 98010009710 | Universidade Federal do Ceará | Brasil
+ 72. FORO26-ASI-072 | Myriam Patricia Benitez Gonzalez | Doc: DNI 3428799 | Universidad Privada del Este - Cede central | Paraguay - Ciudad del Este
+ 73. FORO26-ASI-073 | Laura Nelly Rodriguez Cantu | Doc: INE 2036226630 | Universidad Michoacana de San Nicolás de  Hidalgo | México, Morelia
+ 74. FORO26-ASI-074 | Cristina Segundo Alvarado | Doc: D.I. SEAC840907MDFGLR | REVISTA MEXICANA DE ENFERMERÍA | CIUDAD DE MÉXICO, MÉXICO
+ 75. FORO26-ASI-075 | Araceli Martinez Cruz | Doc: D.I. MACA000830MDFRRRA1 | Universidad Autonoma del Estado de México | Mexico
+ 76. FORO26-ASI-076 | Marcelina Soydeth Jiménez Ávila | Doc: INE 0146121978589 | Universidad de Colima | Colima, México
+ 77. FORO26-ASI-077 | Thailing Núñez Betancourt | Doc: Pasaporte L064216 | UNIVERSIDAD INTERNACIONAL CUBA-MEXICO | TEXCOCO DE MORA.MEXICO
+ 78. FORO26-ASI-078 | Alba Brenda Daniel Guerrero | Doc: D.I. DAGA8701145X0 | Universidad Nacional Autónoma de México | México
+ 79. FORO26-ASI-079 | Pascual Alberto Moreno Florez | Doc: C.I. 12228872 | Universidad de Los Andes-Táchira | Venezuela, San Cristóbal
+ 80. FORO26-ASI-080 | Erick López León | Doc: Pasaporte N150053810 | Universidad Nacional Autónoma de México | Ciudad de México México
+ 81. FORO26-ASI-081 | Martín Emmanuel Páez Alejo | Doc: INE PZALMR01010319H700 | Facultad de Trabajo Social y Desarrollo Humano | México, Nuevo León, Guadalupe.
+ 82. FORO26-ASI-082 | Elisa Gaytán Favela | Doc:  | Universidad Autónoma de Nuevo León | San Nicolás de los Garza, Nuevo León, México
+ 83. FORO26-ASI-083 | Angie Vanessa Burbano Erazo | Doc: C.C. 1.086.019.197 | Universidad de Nariño | Colombia - Pasto
+ 84. FORO26-ASI-084 | Marco Antonio Cruz Chávez | Doc: INE IDMEX2839443344 | UNIVERSIDAD AUTÓNOMA DEL ESTADO DE MORELOS | CUERNAVACA, MORELOS, MÉXICO
+ 85. FORO26-ASI-085 | Francisco Javier Mejía Ochoa | Doc: INE IDMEX1824114106 | Tecnológico Nacional de México, Instituto Tecnológico Superior de Zongolica | Nogales, Veracruz, México
+ 86. FORO26-ASI-086 | Alaín García Peñaloza | Doc: C.I. GRPLAL84090315H000 | Universidad Autónoma del Estado de México | Mexico/Toluca
+ 87. FORO26-ASI-087 | Bayron Steven López Jáuregui | Doc: C.C. 1.094.044.222 | UNIVERSIDAD FRANCISCO DE PAULA SANTANDER | COLOMBIA-CUCTA
+ 88. FORO26-ASI-088 | Emma Elizabeth Paniagua Roldán | Doc: Pasaporte G41006224 | Universidad Nacional Autónoma de México | Ciudad de México, México
+ 89. FORO26-ASI-089 | Mariana Izaguirre Campos | Doc: INE 2445987847 | Universidad Autónoma de Nuevo León | México, San Nicolás
+ 90. FORO26-ASI-090 | Wesley Pereira Ricardo | Doc: D.I. 63.999.561-5 | Universidade de São Paulo (USP) | Brasil, Ribeirão Preto
+ 91. FORO26-ASI-091 | Héctor Jesús Pérez Hernández | Doc: C.I. 2855861016 | Escuela Normal Veracruzana | Xalapa, Veracruz, México
+ 92. FORO26-ASI-092 | Daniel Neftali Ramirez Salazar | Doc: C.C. 7.073.842 | UES | EL SALVADOR
+ 93. FORO26-ASI-093 | Isela Abigail Lugo Alcantar | Doc: INE 2511867693 | Universidad Autónoma de Nuevo León | México, General Zuazua
+ 94. FORO26-ASI-094 | Napoleón Ernesto López Espinoza | Doc: C.C. 13.435.337 | Universidad de El Salvador | El Salvador, San Salvador
+ 95. FORO26-ASI-095 | Ligia Marcela Lazo Majano | Doc: C.I. 012672740 | Universidad de El Salvador (UES) | El Salvador - San Salvador
+ 96. FORO26-ASI-096 | Mariela Vanessa Meléndez Ascencio | Doc: C.I. 023003792 | Universidad de El Salvador | El Salvador, San Salvador
+ 97. FORO26-ASI-097 | Miguel Ángel Méndez Cerino | Doc: INE 2691962005 | Universidad Autónoma de Nuevo León | Mexico, Nuevo León, Monterrey
+ 98. FORO26-ASI-098 | Cassandra Durán Cárdenas | Doc: Pasaporte N00278176 | Universidad Nacional Autónoma de México | México
+ 99. FORO26-ASI-099 | Karina Eddmy Madrid Gomez | Doc: DNI 44944170 | Universidad Nacional de Huancavelica | Perú
+100. FORO26-ASI-100 | Javier Jiménez Hernández | Doc: D.I. JIHJ761004HMCMRV01 | Universidad Autónoma de Guerrero | México. Estado de Guerrero. Municipio: Chilpancingo
+101. FORO26-ASI-101 | Wendolyne Nava González | Doc: INE N12875845 | Universidad Autónoma de Ciudad Juárez | Ciudad Juárez, Chihuahua, México
+102. FORO26-ASI-102 | María del Rosario Rodríguez León | Doc: C.C. 826.091 | UNAM | México,  Ciudad de México
